@@ -119,7 +119,7 @@ export default function Footer() {
         </div>
 
         <div className="container flex items-center justify-between pl-0 pt-8 border-t border-[#0000002B]">
-          <p>2023 furino. All rights reverved</p>
+          <p>2024 furino. All rights reverved</p>
         </div>
       </div>
     </footer>
