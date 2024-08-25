@@ -67,3 +67,24 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Webkit Browsers */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #fff3e3;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #b88e2f;
+  border-radius: 3px;
+}
+
+/* Firefox */
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #b88e2f #fff3e3;
+}
