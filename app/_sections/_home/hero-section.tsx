@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function HomeHero() {
   return (
-    <section className="container w-full max-w-[1400px] h-[600px] relative flex items-center justify-center sm:justify-end bg-homeBg bg-contain bg-center">
+    <section className="container w-full h-[600px] relative flex items-center justify-center sm:justify-end bg-homeBg bg-contain bg-center">
       <div className="flex flex-col bg-lightOrange rounded-[10px] max-w-[643px] p-10">
         <p className="text-myBlack font-semibold">New Arrival</p>
         <p className="text-myOrange text-[52px] font-bold">
