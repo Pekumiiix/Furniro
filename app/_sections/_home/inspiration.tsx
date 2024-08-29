@@ -5,8 +5,8 @@ import Link from "next/link";
 export default function Inspirations() {
   return (
     <section className="w-full flex justify-end py-12 bg-[#FCF8F3]">
-      <div className="container w-full flex items-center justify-end gap-7 pr-0">
-        <div className="flex flex-col gap-5 max-w-[422px]">
+      <div className="container w-full flex flex-col xl:flex-row items-center justify-end gap-7 xl:pr-0">
+        <div className="flex flex-col gap-5 w-full xl:max-w-[422px]">
           <div className="flex flex-col">
             <p className="text-[40px] font-bold text-[#3A3A3A]">
               35+ Beautiful rooms inspiration
@@ -31,7 +31,7 @@ export default function Inspirations() {
           </Button>
         </div>
 
-        <div className="max-h-[582px] w-[66%]">
+        <div className="max-h-[582px] w-full xl:w-[66%]">
           <CarouselPlugin />
         </div>
       </div>

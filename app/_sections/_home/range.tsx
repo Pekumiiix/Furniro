@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Range() {
   return (
-    <section className="container flex flex-col py-12 bg-white gap-12">
+    <section className="container flex flex-col items-center py-12 bg-white gap-12">
       <div className="flex flex-col">
         <p className="text-myBlack text-[32px] font-bold text-center">
           Browse The Range
@@ -12,7 +12,7 @@ export default function Range() {
         </p>
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className=" grid sm:grid-cols-3 gap-5">
         {ranges.map((item, index) => (
           <Link href={`#`} key={index} className="flex flex-col gap-3 group">
             <img

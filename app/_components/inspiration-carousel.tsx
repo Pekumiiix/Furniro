@@ -49,21 +49,6 @@ export function CarouselPlugin() {
   );
 }
 
-/*
-{Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem
-            key={index}
-            className="md:basis-1/2 lg:basis-1/3 bg-red-900 mr-4 last:mr-0"
-          >
-            <div className="p-1">
-              <div className="flex h-[500px] items-center justify-center p-6">
-                <span className="text-4xl font-semibold">{index + 1}</span>
-              </div>
-            </div>
-          </CarouselItem>
-        ))}
-*/
-
 interface CarouselInner {
   imgSrc?: string;
   name?: string;
