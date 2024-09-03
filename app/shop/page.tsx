@@ -7,6 +7,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import ShopProducts from "../_sections/_shop/shop-products";
+import Perks from "../_sections/_shop/perks";
 
 export default function Shop() {
   return (
@@ -27,7 +28,7 @@ export default function Shop() {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-gray-500 font-light">
-                Breadcrumb
+                Shop
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -35,6 +36,8 @@ export default function Shop() {
       </section>
 
       <ShopProducts />
+
+      <Perks />
     </>
   );
 }
