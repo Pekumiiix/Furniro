@@ -1,5 +1,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductDescription from "./_tabs/description";
+import AdditionalInformation from "./_tabs/additional-information";
+import Reviews from "./_tabs/reviews";
 
 export default function ProductTab() {
   return (
@@ -27,8 +29,12 @@ export default function ProductTab() {
       <TabsContent value="description">
         <ProductDescription />
       </TabsContent>
-      <TabsContent value="information">Change your password here.</TabsContent>
-      <TabsContent value="reviews">Change your password here.</TabsContent>
+      <TabsContent value="information">
+        <AdditionalInformation />
+      </TabsContent>
+      <TabsContent value="reviews">
+        <Reviews />
+      </TabsContent>
     </Tabs>
   );
 }

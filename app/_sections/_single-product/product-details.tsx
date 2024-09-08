@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link2 } from "lucide-react";
 import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
+import StarIcon from "@/components/icons/star-icon";
 
 export default function ProductDeatils() {
   const product = productList[0];
@@ -38,10 +39,26 @@ export default function ProductDeatils() {
             </div>
           </div>
 
+          <div className="flex items-center gap-3">
+            <div className="flex items-center">
+              <StarIcon className="w-4 h-4 fill-myOrange" />
+              <StarIcon className="w-4 h-4 fill-myOrange" />
+              <StarIcon className="w-4 h-4 fill-myOrange" />
+              <StarIcon className="w-4 h-4 fill-myOrange" />
+              <StarIcon className="w-4 h-4 fill-myOrange" />
+            </div>
+
+            <p className="text-sm text-[#9F9F9F]">3 Customer Review</p>
+          </div>
+
           <p className="text-sm">
-            Setting the bar as one of the loudest speakers in its class, the
-            Kilburn is a compact, stout-hearted hero with a well-balanced audio
-            which boasts a clear midrange and extended highs for a sound.
+            This stylish café chair boasts a sleek, minimalist design, featuring
+            a smooth, curved wooden seat with a natural finish that highlights
+            the grain. The chair's slender, matte black metal legs provide a
+            modern contrast, ensuring stability while adding a touch of
+            industrial chic. Comfortable yet elegant, it seamlessly complements
+            any café setting, offering both aesthetic appeal and functional
+            durability.
           </p>
 
           <Size />
@@ -89,7 +106,7 @@ function Size() {
     setSize(updatedList);
   };
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-1.5">
       <p className="text-sm text-[#9F9F9F]">Size</p>
 
       <div className="flex gap-3">
@@ -124,7 +141,7 @@ function Color() {
   };
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-1.5">
       <p className="text-sm text-[#9F9F9F]">Color</p>
 
       <div className="flex gap-3">
