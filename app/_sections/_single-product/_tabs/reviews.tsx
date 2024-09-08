@@ -2,7 +2,7 @@ import StarIcon from "@/components/icons/star-icon";
 
 export default function Reviews() {
   return (
-    <section className="w-full grid grid-cols-3 gap-5">
+    <section className="w-full grid md:grid-cols-2 xl:grid-cols-3 gap-5">
       <div className="flex gap-2 px-5 py-4 rounded-[7px] bg-lightOrange">
         <img
           src={`/assets/images/review/human2.jpeg`}
@@ -90,17 +90,5 @@ export default function Reviews() {
         </div>
       </div>
     </section>
-  );
-}
-
-function FiveStars() {
-  return (
-    <div className="flex items-center gap-1">
-      <StarIcon className="w-6 h-6 fill-myOrange" />
-      <StarIcon className="w-6 h-6 fill-myOrange" />
-      <StarIcon className="w-6 h-6 fill-myOrange" />
-      <StarIcon className="w-6 h-6 fill-myOrange" />
-      <StarIcon className="w-6 h-6 fill-myOrange" />
-    </div>
   );
 }

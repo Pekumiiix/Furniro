@@ -24,7 +24,7 @@ export default function ProductDescription() {
         </p>
       </div>
 
-      <div className="min-w-[1240px] h-[348px] grid grid-cols-2 gap-5">
+      <div className="min-w-full lg:min-w-[1240px] h-fit lg:h-[348px] grid lg:grid-cols-2 gap-5">
         <img
           src="/assets/images/products/syltherine.png"
           alt="Product"

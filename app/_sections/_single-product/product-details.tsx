@@ -7,20 +7,39 @@ import { Link2 } from "lucide-react";
 import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
+import { Toaster, toast } from "sonner";
 
 export default function ProductDeatils() {
   const product = productList[0];
+  const [isCopied, setIsCopied] = useState<boolean | null>(null);
+
+  function copyUrl() {
+    if (typeof window !== "undefined") {
+      const currentUrl = window.location.href;
+
+      navigator.clipboard
+        .writeText(currentUrl)
+        .then(() => {
+          toast.success("Successfully copied link");
+          setIsCopied(true);
+        })
+        .catch(() => {
+          toast.error("Failed to copy");
+          setIsCopied(false);
+        });
+    }
+  }
 
   return (
     <>
-      <section className="container w-full flex gap-[50px] py-[50px]">
+      <section className="container w-full flex flex-col lg:flex-row gap-[50px] py-[50px]">
         <img
           src={product.productImage}
           alt={product.name}
-          className="w-[553px] h-[500px] rounded-[10px]"
+          className="lg:w-[500px] h-[447px] xl:w-[553px] xl:h-[500px] rounded-[10px]"
         />
 
-        <div className="flex flex-col max-w-[606px] gap-4 h-fit">
+        <div className="flex flex-col max-w-full lg:max-w-[606px] gap-4 h-fit">
           <div className="flex flex-col gap-1">
             <p className="text-3xl font-medium">{product.name}</p>
             <div className="flex items-center gap-2">
@@ -80,7 +99,10 @@ export default function ProductDeatils() {
           <div className="flex items-center gap-3">
             <p className="text-[#9F9F9F] text-sm font-medium">Share:</p>
 
-            <Button className="gap-1 py-1 px-2 bg-transparent hover:bg-transparent text-black">
+            <Button
+              className="gap-1 py-1 px-2 bg-transparent hover:bg-transparent text-black"
+              onClick={copyUrl}
+            >
               Link <Link2 />
             </Button>
           </div>

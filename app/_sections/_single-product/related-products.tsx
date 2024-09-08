@@ -7,7 +7,7 @@ export default function RelatedProducts() {
     <section className="container flex flex-col items-center gap-5 py-10 border-t border-[#D9D9D9] mt-20">
       <p className="text-2xl font-medium">Related products</p>
 
-      <div className="grid grid-cols-4 gap-5">
+      <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <IndividualProduct
           productImage={productList[0].productImage}
           discount={productList[0].discount}

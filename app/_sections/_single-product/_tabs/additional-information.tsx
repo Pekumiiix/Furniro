@@ -1,6 +1,6 @@
 export default function AdditionalInformation() {
   return (
-    <section className="flex gap-10">
+    <section className="grid md:grid-cols-3 lg:flex gap-10">
       <div className="flex flex-col gap-2 w-fit">
         <p className="text-xl font-medium">General</p>
 
@@ -68,7 +68,7 @@ export default function AdditionalInformation() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 max-w-[550px]">
+      <div className="flex flex-col gap-2 md:col-span-3 lg:max-w-[550px]">
         <p className="text-xl font-medium">Warranty</p>
 
         <div className="flex flex-col gap-2">
