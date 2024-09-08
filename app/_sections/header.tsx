@@ -14,6 +14,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import CartDialog from "../_components/cart-dialog";
 
 export default function Header() {
   return (
@@ -109,12 +118,14 @@ export default function Header() {
             <HeartIcon className="w-[26px] h-6 stroke-black fill-none group-hover:stroke-none group-hover:fill-myOrange transition-all duration-300" />
           </Button>
 
-          <Button
-            variant={`default`}
-            className="bg-transparent hover:bg-transparent group"
-          >
-            <CartIcon className="w-[26px] h-[23px] fill-black group-hover:fill-myOrange transition-all duration-300" />
-          </Button>
+          <Dialog>
+            <DialogTrigger className="bg-transparent hover:bg-transparent group">
+              <CartIcon className="w-[26px] h-[23px] fill-black group-hover:fill-myOrange transition-all duration-300" />
+            </DialogTrigger>
+            <DialogContent className="max-w-screen h-screen bg-transparent px-0 border-none">
+              <CartDialog />
+            </DialogContent>
+          </Dialog>
         </div>
       </nav>
     </header>

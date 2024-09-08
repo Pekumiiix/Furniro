@@ -172,13 +172,21 @@ function Color() {
             "flex h-[30px] w-[30px] rounded-full outline outline-2 outline-offset-2 transition-all duration-300";
           const colorClass =
             item.color === "blue"
-              ? "bg-blue-800 outline-blue-600"
+              ? "bg-blue-800"
               : item.color === "black"
-              ? "bg-black outline-black"
+              ? "bg-black"
               : item.color === "yellow"
-              ? "bg-yellow-800 outline-yellow-600"
+              ? "bg-yellow-800"
               : "";
-          const activeClass = item.isActive ? "" : "outline-transparent";
+          const activeClass = item.isActive
+            ? item.color === "blue"
+              ? "outline-blue-600"
+              : item.color === "black"
+              ? "outline-black"
+              : item.color === "yellow"
+              ? "outline-yellow-600"
+              : ""
+            : "outline-transparent";
 
           return (
             <div
