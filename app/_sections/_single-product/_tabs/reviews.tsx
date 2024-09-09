@@ -17,8 +17,8 @@ export default function Reviews() {
             <p className="text-sm font-medium">Anonymous_1</p>
             <p className="text-sm text-[#9F9F9F]">
               Absolutely love this chair! The design is sleek and modern, and it
-              fits perfectly in my café. It's not only stylish but also very
-              comfortable for my customers. Highly recommend!
+              fits perfectly in my café. It&apos;s not only stylish but also
+              very comfortable for my customers. Highly recommend!
             </p>
           </div>
 
@@ -46,8 +46,8 @@ export default function Reviews() {
             <p className="text-sm font-medium">Anonymous_1</p>
             <p className="text-sm text-[#9F9F9F]">
               Absolutely love this chair! The design is sleek and modern, and it
-              fits perfectly in my café. It's not only stylish but also very
-              comfortable for my customers. Highly recommend!
+              fits perfectly in my café. It&apos;s not only stylish but also
+              very comfortable for my customers. Highly recommend!
             </p>
           </div>
 
@@ -75,8 +75,8 @@ export default function Reviews() {
             <p className="text-sm font-medium">Anonymous_1</p>
             <p className="text-sm text-[#9F9F9F]">
               Absolutely love this chair! The design is sleek and modern, and it
-              fits perfectly in my café. It's not only stylish but also very
-              comfortable for my customers. Highly recommend!
+              fits perfectly in my café. It&apos;s not only stylish but also
+              very comfortable for my customers. Highly recommend!
             </p>
           </div>
 

@@ -73,8 +73,8 @@ export default function ProductDeatils() {
           <p className="text-sm">
             This stylish café chair boasts a sleek, minimalist design, featuring
             a smooth, curved wooden seat with a natural finish that highlights
-            the grain. The chair's slender, matte black metal legs provide a
-            modern contrast, ensuring stability while adding a touch of
+            the grain. The chair&apos;s slender, matte black metal legs provide
+            a modern contrast, ensuring stability while adding a touch of
             industrial chic. Comfortable yet elegant, it seamlessly complements
             any café setting, offering both aesthetic appeal and functional
             durability.
