@@ -1,6 +1,7 @@
 import IndividualProduct from "@/app/_components/indvidual-product";
 import { productList } from "@/app/_data/product";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function RelatedProducts() {
   return (
@@ -9,6 +10,7 @@ export default function RelatedProducts() {
 
       <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         <IndividualProduct
+          id={productList[0].id}
           productImage={productList[0].productImage}
           discount={productList[0].discount}
           description={productList[0].description}
@@ -18,6 +20,7 @@ export default function RelatedProducts() {
           type={productList[0].type}
         />
         <IndividualProduct
+          id={productList[1].id}
           productImage={productList[1].productImage}
           discount={productList[1].discount}
           description={productList[1].description}
@@ -27,6 +30,7 @@ export default function RelatedProducts() {
           type={productList[1].type}
         />
         <IndividualProduct
+          id={productList[2].id}
           productImage={productList[2].productImage}
           discount={productList[2].discount}
           description={productList[2].description}
@@ -36,6 +40,7 @@ export default function RelatedProducts() {
           type={productList[2].type}
         />
         <IndividualProduct
+          id={productList[3].id}
           productImage={productList[3].productImage}
           discount={productList[3].discount}
           description={productList[3].description}
@@ -47,10 +52,11 @@ export default function RelatedProducts() {
       </div>
 
       <Button
+        asChild
         variant={`outline`}
         className="border-myOrange text-myOrange font-semibold bg-transparent hover:bg-lightOrange"
       >
-        Show more
+        <Link href={`/shop`}>Show more</Link>
       </Button>
     </section>
   );

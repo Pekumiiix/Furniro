@@ -9,6 +9,7 @@ export default function IndividualProduct({
   newPrice,
   originalPrice,
   type,
+  id,
 }: Products) {
   return (
     <div className="relative flex flex-col">
@@ -31,7 +32,7 @@ export default function IndividualProduct({
       </div>
 
       <Link
-        href={`#`}
+        href={`/shop/${id}`}
         className="flex flex-col gap-3 bg-[#F4F5F7] px-3 pt-3 pb-4"
       >
         <div className="flex flex-col">
@@ -63,4 +64,5 @@ type Products = {
   newPrice: string;
   originalPrice: string;
   type: "normal" | "discount" | "new";
+  id: number;
 };

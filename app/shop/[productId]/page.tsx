@@ -6,9 +6,14 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import ProductDeatils from "../_sections/_single-product/product-details";
+import ProductDetails from "../../_sections/_single-product/product-details";
+import { productList } from "@/app/_data/product";
 
-export default function SingleProduct() {
+export default function SingleProduct({ params }: any) {
+  const product = productList.find(
+    (p) => p.id === Number.parseInt(params.productId)
+  );
+
   return (
     <section className="w-full">
       <Breadcrumb className="w-full h-[100px] container flex items-center bg-[#F9F1E7]">
@@ -26,12 +31,12 @@ export default function SingleProduct() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Syltherine</BreadcrumbPage>
+            <BreadcrumbPage>{product?.name}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
-      <ProductDeatils />
+      <ProductDetails product={product} />
     </section>
   );
 }

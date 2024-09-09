@@ -7,12 +7,9 @@ import { Link2 } from "lucide-react";
 import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
-import { Toaster, toast } from "sonner";
+import { toast } from "sonner";
 
-export default function ProductDeatils() {
-  const product = productList[0];
-  const [isCopied, setIsCopied] = useState<boolean | null>(null);
-
+export default function ProductDetails({ product }: any) {
   function copyUrl() {
     if (typeof window !== "undefined") {
       const currentUrl = window.location.href;
@@ -21,11 +18,9 @@ export default function ProductDeatils() {
         .writeText(currentUrl)
         .then(() => {
           toast.success("Successfully copied link");
-          setIsCopied(true);
         })
         .catch(() => {
           toast.error("Failed to copy");
-          setIsCopied(false);
         });
     }
   }
@@ -223,6 +218,17 @@ function CountIncrement() {
     </div>
   );
 }
+
+type Products = {
+  productImage: string;
+  discount: string;
+  description: string;
+  name: string;
+  newPrice: string;
+  originalPrice: string;
+  type: "normal" | "discount" | "new";
+  id: number;
+};
 
 const productSizes = [
   { size: "XS", isActive: true },

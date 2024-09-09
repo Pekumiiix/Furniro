@@ -15,6 +15,7 @@ export default function Products() {
         {productList.map((item: Products, index: number) => (
           <IndividualProduct
             key={index}
+            id={item.id}
             productImage={item.productImage}
             discount={item.discount}
             description={item.description}
@@ -45,4 +46,5 @@ type Products = {
   newPrice: string;
   originalPrice: string;
   type: "normal" | "discount" | "new";
+  id: number;
 };
