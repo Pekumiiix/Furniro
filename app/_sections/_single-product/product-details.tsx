@@ -84,7 +84,7 @@ export default function ProductDeatils() {
 
           <Color />
 
-          <div className="flex items-center gap-5 border-b border-[#D9D9D9] pb-10">
+          <div className="flex flex-wrap sm:flex-nowrap items-center gap-5 border-b border-[#D9D9D9] pb-10">
             <CountIncrement />
 
             <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
