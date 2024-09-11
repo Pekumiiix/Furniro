@@ -45,7 +45,7 @@ export default function CartList() {
 
   return (
     <section className="col-span-4 lg:col-span-3 h-fit overflow-y-auto">
-      <Table className="min-w-[700px]">
+      <Table className="min-w-[600px]">
         <TableHeader>
           <TableRow className="bg-[#F9F1E7] hover:bg-[#F9F1E7]">
             <TableHead className="text-myBlack text-center">Product</TableHead>
@@ -69,13 +69,15 @@ export default function CartList() {
                   />
                   <div className="flex flex-col">
                     <p className="text-[#9F9F9F]">{item.name}</p>
-                    {item.type === "discount"
-                      ? item.newPrice
-                      : item.originalPrice}
+                    <p className="text-[#9F9F9F] flex sm:hidden">
+                      {item.type === "discount"
+                        ? item.newPrice
+                        : item.originalPrice}
+                    </p>
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="text-[#9F9F9F] hidden sm:block">
+              <TableCell className="text-[#9F9F9F] hidden sm:table-cell align-middle">
                 {item.type === "discount" ? item.newPrice : item.originalPrice}
               </TableCell>
               <TableCell>
