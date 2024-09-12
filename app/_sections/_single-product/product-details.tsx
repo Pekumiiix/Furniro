@@ -1,15 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import { productList } from "@/app/_data/product";
 import { Button } from "@/components/ui/button";
 import { Link2 } from "lucide-react";
 import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
 import { toast } from "sonner";
+import CountIncrement from "@/app/_components/count-icrement";
 
 export default function ProductDetails({ product }: any) {
+  const [count, setCount] = useState<number>(1);
+
   function copyUrl() {
     if (typeof window !== "undefined") {
       const currentUrl = window.location.href;
@@ -80,7 +82,11 @@ export default function ProductDetails({ product }: any) {
           <Color />
 
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-5 border-b border-[#D9D9D9] pb-10">
-            <CountIncrement />
+            <CountIncrement
+              increaseFunction={() => setCount((c) => c + 1)}
+              decreaseFunction={() => setCount((c) => c - 1)}
+              count={count}
+            />
 
             <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
               Add to cart
@@ -196,47 +202,23 @@ function Color() {
   );
 }
 
-function CountIncrement() {
-  const [count, setCount] = useState<number>(1);
-
-  return (
-    <div className="flex items-center gap-3 px-3 py-2 border border-[#9F9F9F] rounded-[10px]">
-      <Button
-        className="py-1 px-2 h-fit bg-transparent hover:bg-lightOrange transition-all duration-300 text-black"
-        onClick={() => setCount((c) => c - 1)}
-        disabled={count === 1 ? true : false}
-      >
-        -
-      </Button>
-      <p className="font-medium">{count}</p>
-      <Button
-        onClick={() => setCount((c) => c + 1)}
-        className="py-1 px-2 h-fit bg-transparent hover:bg-lightOrange transition-all duration-300 text-black"
-      >
-        +
-      </Button>
-    </div>
-  );
+interface Size {
+  size: string;
+  isActive: boolean;
 }
 
-type Products = {
-  productImage: string;
-  discount: string;
-  description: string;
-  name: string;
-  newPrice: string;
-  originalPrice: string;
-  type: "normal" | "discount" | "new";
-  id: number;
-};
+interface Color {
+  color: string;
+  isActive: boolean;
+}
 
-const productSizes = [
+const productSizes: Size[] = [
   { size: "XS", isActive: true },
   { size: "L", isActive: false },
   { size: "XL", isActive: false },
 ];
 
-const colors = [
+const colors: Color[] = [
   { color: "blue", isActive: true },
   { color: "black", isActive: false },
   { color: "yellow", isActive: false },

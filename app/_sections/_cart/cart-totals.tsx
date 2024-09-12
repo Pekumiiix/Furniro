@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CartTotals() {
   return (
@@ -18,10 +19,11 @@ export default function CartTotals() {
         </div>
       </div>
       <Button
+        asChild
         variant={`outline`}
         className="text-sm font-semibold bg-transparent"
       >
-        Checkout
+        <Link href={`/checkout`}>Checkout</Link>
       </Button>
     </div>
   );

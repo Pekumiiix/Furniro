@@ -12,6 +12,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import BinIcon from "@/components/icons/bin-icon";
 import { productList } from "@/app/_data/product";
+import Link from "next/link";
+import EmptyCart from "@/components/icons/empty-cart";
+import CountIncrement from "@/app/_components/count-icrement";
 
 export default function CartList() {
   const [cartProduct, setProducts] = useState(
@@ -20,10 +23,6 @@ export default function CartList() {
       count: 1, // Add a count property to each product
     }))
   );
-
-  function removeProducts(index: number) {
-    setProducts(cartProduct.filter((_, i) => i !== index));
-  }
 
   function increaseCount(index: number) {
     setProducts(
@@ -43,13 +42,32 @@ export default function CartList() {
     );
   }
 
+  if (cartProduct.length === 0) {
+    return (
+      <section className="col-span-4 lg:col-span-3 h-fit flex flex-col items-center justify-center gap-10">
+        <EmptyCart />
+        <div className="flex flex-col gap-3 items-center">
+          <p className="text-2xl text-myBlack font-semibold">
+            Your cart is empty!!
+          </p>
+          <Button
+            asChild
+            className="font-white bg-myOrange font-medium hover:bg-[#b88e2fcc]"
+          >
+            <Link href={`/shop`}>Add Items</Link>
+          </Button>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="col-span-4 lg:col-span-3 h-fit overflow-y-auto">
       <Table className="min-w-[600px]">
         <TableHeader>
           <TableRow className="bg-[#F9F1E7] hover:bg-[#F9F1E7]">
             <TableHead className="text-myBlack text-center">Product</TableHead>
-            <TableHead className="text-myBlack hidden sm:block">
+            <TableHead className="text-myBlack hidden sm:table-cell">
               Price
             </TableHead>
             <TableHead className="text-myBlack">Quantity</TableHead>
@@ -93,7 +111,9 @@ export default function CartList() {
               <TableCell className="text-right">
                 <Button
                   className="bg-transparent group hover:bg-transparent"
-                  onClick={() => removeProducts(index)}
+                  onClick={() =>
+                    setProducts(cartProduct.filter((_, i) => i !== index))
+                  }
                 >
                   <BinIcon className="w-[22px] h-[22px] fill-[#b88e2fcc] group-hover:fill-myOrange transition-all duration-300" />
                 </Button>
@@ -103,26 +123,5 @@ export default function CartList() {
         </TableBody>
       </Table>
     </section>
-  );
-}
-
-function CountIncrement({ increaseFunction, decreaseFunction, count }: any) {
-  return (
-    <div className="flex items-center gap-3 px-3 py-2 border border-[#9F9F9F] rounded-[10px] w-fit">
-      <Button
-        className="py-1 px-2 h-fit bg-transparent hover:bg-lightOrange transition-all duration-300 text-black"
-        onClick={decreaseFunction}
-        disabled={count === 1 ? true : false}
-      >
-        -
-      </Button>
-      <p className="font-medium">{count}</p>
-      <Button
-        onClick={increaseFunction}
-        className="py-1 px-2 h-fit bg-transparent hover:bg-lightOrange transition-all duration-300 text-black"
-      >
-        +
-      </Button>
-    </div>
   );
 }
