@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function CartTotals() {
   return (
-    <div className="col-span-4 lg:col-span-1 flex lg:flex-col items-center justify-between pt-5 pb-7 gap-5 lg:bg-lightOrange rounded-[8px] h-fit">
+    <div className="col-span-4 pr-3 sm:pr-0 lg:col-span-1 flex lg:flex-col items-center justify-between pt-5 pb-7 gap-5 lg:bg-lightOrange rounded-[8px] h-fit">
       <div className="flex flex-col gap-5 items-start lg:items-center">
         <p className="text-xl font-medium">Cart Totals</p>
 
