@@ -166,5 +166,3 @@ const navLinks: NavLinks[] = [
   { name: "Blog", href: "/blog", isActive: false },
   { name: "Contact", href: "/contact", isActive: false },
 ];
-
-//className="max-w-screen h-screen bg-transparent px-0 border-none"

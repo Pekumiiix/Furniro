@@ -10,11 +10,11 @@ export default function CartTotals() {
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-3">
             <p className="text-sm text-myBlack">Subtotal:</p>
-            <p className="text-[#9F9F9F] text-sm">Rs. 250,000.00</p>
+            <p className="text-[#9F9F9F] text-sm">₦250,000.00</p>
           </div>
           <div className="flex items-center  gap-3">
             <p className="text-sm text-myBlack">Total:</p>
-            <p className="text-myOrange text-sm">Rs. 250,000.00</p>
+            <p className="text-myOrange text-sm">₦250,000.00</p>
           </div>
         </div>
       </div>

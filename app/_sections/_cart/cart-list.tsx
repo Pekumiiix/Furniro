@@ -108,7 +108,9 @@ export default function CartList() {
                 />
               </TableCell>
               <TableCell>
-                {item.type === "discount" ? item.newPrice : item.originalPrice}
+                {item.newPrice
+                  ? "₦" + item.count * item.newPrice
+                  : "₦" + item.count * item.originalPrice}
               </TableCell>
               <TableCell className="text-right">
                 <Button

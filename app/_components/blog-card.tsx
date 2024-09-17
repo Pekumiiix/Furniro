@@ -24,7 +24,7 @@ export default function BlogCard({ image, header }: Blog) {
                 width={20}
               />
 
-              <p className="text-[#9F9F9F]">Admin</p>
+              <p className="text-xs md:text-base text-[#9F9F9F]">Admin</p>
             </div>
             <div className="flex items-center gap-1">
               <Image
@@ -34,13 +34,15 @@ export default function BlogCard({ image, header }: Blog) {
                 width={16}
               />
 
-              <p className="text-[#9F9F9F]">17 Sept, 2024</p>
+              <p className="text-xs md:text-base text-[#9F9F9F]">
+                17 Sept, 2024
+              </p>
             </div>
           </div>
 
           <div className="flex flex-col">
-            <p className="text-[30px] font-medium">{header}</p>
-            <p className="text-[15px] text-[#9F9F9F]">
+            <p className="text-xl md:text-[30px] font-medium">{header}</p>
+            <p className="text-[13px] md:text-[15px] text-[#9F9F9F]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus
               mauris vitae ultricies leo integer malesuada nunc. In nulla
@@ -54,7 +56,11 @@ export default function BlogCard({ image, header }: Blog) {
           </div>
         </div>
 
-        <Button asChild variant={`link`} className="w-fit underline pl-0">
+        <Button
+          asChild
+          variant={`link`}
+          className="text-[13px] md:text-base w-fit underline pl-0"
+        >
           <Link href={`/`}>Read More</Link>
         </Button>
       </div>
