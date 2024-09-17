@@ -1,26 +1,29 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Range() {
   return (
     <section className="container flex flex-col items-center py-12 bg-white gap-12">
-      <div className="flex flex-col">
-        <p className="text-myBlack text-[32px] font-bold text-center">
+      <div className="flex flex-col gap-2">
+        <p className="text-myBlack text-3xl md:text-[40px] font-bold text-center">
           Browse The Range
         </p>
-        <p className="text-[#666666] text-xl text-center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        <p className="text-[#666666] md:text-xl text-center max-w-[600px]">
+          Discover timeless furniture pieces designed to elevate your space with
+          comfort and style.
         </p>
       </div>
 
-      <div className=" grid sm:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-3 gap-7 md:gap-5">
         {ranges.map((item, index) => (
           <Link href={`#`} key={index} className="flex flex-col gap-3 group">
-            <img
+            <Image
               src={item.imgSrc}
               alt={`${item.name} Picture`}
-              className="w-full max-h-[480px]"
+              height={480}
+              width={381}
             />
-            <p className="text-myBlack text-2xl font-semibold text-center group-hover:text-myOrange transition-all duration-300">
+            <p className="text-myBlack text-lg md:text-2xl font-semibold text-center group-hover:text-myOrange transition-all duration-300">
               {item.name}
             </p>
           </Link>
@@ -31,8 +34,8 @@ export default function Range() {
 }
 
 interface Ranges {
-  imgSrc?: string;
-  name?: string;
+  imgSrc: string;
+  name: string;
 }
 
 const ranges: Ranges[] = [

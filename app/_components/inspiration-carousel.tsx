@@ -34,9 +34,9 @@ export function CarouselPlugin() {
               alt="Carousel"
               className="w-full h-full"
             />
-            <div className=" absolute left-6 bottom-5 flex flex-col p-7 bg-[#FFFFFFB8]">
-              <p className="text-[#616161] font-medium">{item.name}</p>
-              <p className="text-[28px] font-semibold text-[#3A3A3A]">
+            <div className="absolute left-6 bottom-5 flex flex-col px-4 py-4 bg-[#FFFFFFB8] rounded-[3px]">
+              <p className="text-[#616161] font-medium text-sm">{item.name}</p>
+              <p className="text-[28px] text-lg font-semibold text-[#3A3A3A]">
                 {item.description}
               </p>
             </div>

@@ -7,7 +7,7 @@ import IndividualProduct from "@/app/_components/indvidual-product";
 export default function Products() {
   return (
     <section className="container flex flex-col gap-7 items-center py-12">
-      <p className="text-[#3A3A3A] text-[40px] font-bold text-center">
+      <p className="text-[#3A3A3A] text-3xl md:text-[40px] leading-[48px] font-bold text-center">
         Our Products
       </p>
 
@@ -40,11 +40,11 @@ export default function Products() {
 
 type Products = {
   productImage: string;
-  discount: string;
+  discount?: string;
   description: string;
   name: string;
-  newPrice: string;
-  originalPrice: string;
+  newPrice?: number;
+  originalPrice: number;
   type: "normal" | "discount" | "new";
   id: number;
 };

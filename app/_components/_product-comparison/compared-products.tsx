@@ -29,28 +29,21 @@ export default function Products({ item }: { item: ProductList[] }) {
               <div className={`flex items-center gap-2`}>
                 <p className="text-[#3A3A3A] text-sm font-semibold">
                   {product.type === "discount"
-                    ? product.newPrice
-                    : product.originalPrice}
+                    ? "₦" + product.newPrice
+                    : "₦" + product.originalPrice}
                 </p>
                 <p
                   className={`${
                     product.type === "discount" ? "flex" : "hidden"
                   } text-[#B0B0B0] text-sm font-medium line-through`}
                 >
-                  {product.originalPrice}
+                  {"₦" + product.originalPrice}
                 </p>
               </div>
               <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center">
                   <p className="text-sm font-medium mt-0.5">4.2</p>
-
-                  <div className="flex items-center">
-                    <StarIcon className="w-6 h-6 fill-myOrange" />
-                    <StarIcon className="w-6 h-6 fill-myOrange" />
-                    <StarIcon className="w-6 h-6 fill-myOrange" />
-                    <StarIcon className="w-6 h-6 fill-myOrange" />
-                    <StarIcon className="w-6 h-6 fill-myOrange" />
-                  </div>
+                  <StarIcon className="w-4 h-4 fill-myOrange" />
                 </div>
 
                 <p className="text-sm text-[#9F9F9F]">200 reviews</p>
@@ -73,7 +66,7 @@ interface ProductList {
   productImage: string;
   name: string;
   description: string;
-  newPrice: string;
-  originalPrice: string;
-  discount: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
 }

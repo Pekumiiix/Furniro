@@ -86,9 +86,9 @@ export default function CheckoutForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="container grid grid-cols-4 gap-10 lg:gap-0 xl:gap-5 py-20"
+        className="container flex flex-col md:flex-row justify-center gap-10 lg:gap-10 xl:gap-20 py-20 bg-red"
       >
-        <div className="w-full col-span-4 lg:col-span-3 flex flex-col gap-7 lg:px-[10%] xl:px-[20%]">
+        <div className="w-full md:w-[608px] flex flex-col gap-7">
           <p className="text-xl font-medium text-myBlack">Billing Details</p>
 
           <div className="flex flex-col gap-5">
@@ -178,6 +178,15 @@ function FormBlock({ type, name, label, placeholder }: FormProps) {
     defaultValues: {
       firstname: "",
       lastname: "",
+      companyname: "",
+      country: "",
+      street: "",
+      town: "",
+      province: "",
+      zipcode: "",
+      phone: "",
+      email: "",
+      extrainformation: "",
     },
   });
 

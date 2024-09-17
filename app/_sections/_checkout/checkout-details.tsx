@@ -8,7 +8,7 @@ export default function CheckoutDetails() {
 
   return (
     <>
-      <div className="col-span-4 lg:col-span-1 flex flex-col gap-5">
+      <div className="w-full md:w-[350px] flex flex-col gap-5">
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <p className="font-medium text-lg">Products</p>

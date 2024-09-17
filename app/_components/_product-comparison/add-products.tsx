@@ -10,7 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
 
 export default function AddProducts() {
   const [comparison, setComparison] =
@@ -62,15 +61,15 @@ export default function AddProducts() {
                   <div className={`flex items-center gap-2`}>
                     <p className="text-[#3A3A3A] text-xs font-semibold">
                       {item.type === "discount"
-                        ? item.newPrice
-                        : item.originalPrice}
+                        ? "₦" + item.newPrice
+                        : "₦" + item.originalPrice}
                     </p>
                     <p
                       className={`${
                         item.type === "discount" ? "flex" : "hidden"
                       } text-[#B0B0B0] line-through text-xs`}
                     >
-                      {item.originalPrice}
+                      {"₦" + item.originalPrice}
                     </p>
                   </div>
                 </div>
@@ -91,9 +90,9 @@ interface ProductList {
   productImage: string;
   name: string;
   description: string;
-  newPrice: string;
-  originalPrice: string;
-  discount: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
 }
 
 type comparedProduct = ProductList;

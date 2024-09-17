@@ -89,14 +89,16 @@ export default function CartList() {
                     <p className="text-[#9F9F9F]">{item.name}</p>
                     <p className="text-[#9F9F9F] flex sm:hidden">
                       {item.type === "discount"
-                        ? item.newPrice
-                        : item.originalPrice}
+                        ? "₦" + item.newPrice
+                        : "₦" + item.originalPrice}
                     </p>
                   </div>
                 </div>
               </TableCell>
               <TableCell className="text-[#9F9F9F] hidden sm:table-cell align-middle">
-                {item.type === "discount" ? item.newPrice : item.originalPrice}
+                {item.type === "discount"
+                  ? "₦" + item.newPrice
+                  : "₦" + item.originalPrice}
               </TableCell>
               <TableCell>
                 <CountIncrement

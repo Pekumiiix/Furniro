@@ -42,29 +42,26 @@ export default function ProductDetails({ product }: any) {
             <div className="flex items-center gap-2">
               <p className="text-xl text-myBlack">
                 {product.type === "discount"
-                  ? product.newPrice
-                  : product.originalPrice}
+                  ? "₦" + product.newPrice
+                  : "₦" + product.originalPrice}
               </p>
               <p
                 className={`${
                   product.type === "discount" ? "flex" : "hidden"
                 } text-xl text-[#9F9F9F] line-through`}
               >
-                {product.originalPrice}
+                {"₦" + product.originalPrice}
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="flex items-center">
-              <StarIcon className="w-4 h-4 fill-myOrange" />
-              <StarIcon className="w-4 h-4 fill-myOrange" />
-              <StarIcon className="w-4 h-4 fill-myOrange" />
-              <StarIcon className="w-4 h-4 fill-myOrange" />
+            <div className="flex items-center gap-0.5">
+              <p>5</p>
               <StarIcon className="w-4 h-4 fill-myOrange" />
             </div>
 
-            <p className="text-sm text-[#9F9F9F]">3 Customer Review</p>
+            <p className="text-sm text-[#9F9F9F]">3 Customer Reviews</p>
           </div>
 
           <p className="text-sm">
@@ -88,13 +85,15 @@ export default function ProductDetails({ product }: any) {
               count={count}
             />
 
-            <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
-              Add to cart
-            </Button>
+            <div className="flex items-center gap-5">
+              <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
+                Add to cart
+              </Button>
 
-            <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
-              + Compare
-            </Button>
+              <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
+                + Compare
+              </Button>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">

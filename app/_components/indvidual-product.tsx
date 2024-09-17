@@ -41,14 +41,14 @@ export default function IndividualProduct({
         </div>
         <div className={`flex items-center gap-2`}>
           <p className="text-[#3A3A3A] text-xl font-semibold">
-            {type === "discount" ? newPrice : originalPrice}
+            {type === "discount" ? "₦" + newPrice : "₦" + originalPrice}
           </p>
           <p
             className={`${
               type === "discount" ? "flex" : "hidden"
             } text-[#B0B0B0] line-through`}
           >
-            {originalPrice}
+            {"₦" + originalPrice}
           </p>
         </div>
       </Link>
@@ -58,11 +58,11 @@ export default function IndividualProduct({
 
 type Products = {
   productImage: string;
-  discount: string;
+  discount?: string;
   description: string;
   name: string;
-  newPrice: string;
-  originalPrice: string;
+  newPrice?: number;
+  originalPrice: number;
   type: "normal" | "discount" | "new";
   id: number;
 };

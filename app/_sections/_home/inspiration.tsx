@@ -7,8 +7,8 @@ export default function Inspirations() {
     <section className="w-full flex justify-end py-12 bg-[#FCF8F3]">
       <div className="container w-full flex flex-col xl:flex-row items-center justify-end gap-7 xl:pr-0">
         <div className="flex flex-col gap-5 w-full xl:max-w-[422px]">
-          <div className="flex flex-col">
-            <p className="text-[40px] font-bold text-[#3A3A3A]">
+          <div className="flex flex-col gap-1">
+            <p className="text-3xl md:text-[40px] md:leading-[42px] font-bold text-[#3A3A3A]">
               35+ Beautiful rooms inspiration
             </p>
             <p className="font-medium text-[#616161]">

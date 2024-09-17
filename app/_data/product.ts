@@ -4,20 +4,20 @@ interface ProductList {
   productImage: string;
   name: string;
   description: string;
-  newPrice: string;
-  originalPrice: string;
-  discount: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
 }
 
 export const productList: ProductList[] = [
   {
     id: 1,
-    type: "normal",
+    type: "discount",
     productImage: "/assets/images/products/syltherine.png",
     name: "Syltherine",
     description: "Stylish cafe chair",
-    newPrice: "Rp 2.500.000",
-    originalPrice: "Rp 3.500.000",
+    newPrice: 2500000,
+    originalPrice: 3500000,
     discount: "-30%",
   },
   {
@@ -26,8 +26,7 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Leviosa",
     description: "Stylish cafe chair",
-    newPrice: "",
-    originalPrice: "Rp 2.500.000",
+    originalPrice: 2500000,
     discount: "",
   },
   {
@@ -36,8 +35,8 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Lolito",
     description: "Luxury big sofa",
-    newPrice: "Rp 7.000.000",
-    originalPrice: "Rp 14.000.000",
+    newPrice: 7000000,
+    originalPrice: 14000000,
     discount: "-50%",
   },
   {
@@ -46,9 +45,7 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Respira",
     description: "Outdoor bar table and stool",
-    newPrice: "",
-    originalPrice: "Rp 500.000",
-    discount: "",
+    originalPrice: 500000,
   },
   {
     id: 5,
@@ -56,9 +53,7 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Grifo",
     description: "Night lamp",
-    newPrice: "",
-    originalPrice: "Rp 1.500.000",
-    discount: "",
+    originalPrice: 1500000,
   },
   {
     id: 6,
@@ -66,9 +61,7 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Muggo",
     description: "Luxury sofa",
-    newPrice: "",
-    originalPrice: "Rp 150.000",
-    discount: "",
+    originalPrice: 150000,
   },
   {
     id: 7,
@@ -76,8 +69,8 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Pingky",
     description: "Luxury big sofa",
-    newPrice: "Rp 7.000.000",
-    originalPrice: "Rp 14.000.000",
+    newPrice: 7000000,
+    originalPrice: 14000000,
     discount: "-50%",
   },
   {
@@ -86,8 +79,6 @@ export const productList: ProductList[] = [
     productImage: "/assets/images/products/syltherine.png",
     name: "Nico",
     description: "Luxury brown leather sofa",
-    newPrice: "",
-    originalPrice: "Rp 8.500.000",
-    discount: "",
+    originalPrice: 8500000,
   },
 ];

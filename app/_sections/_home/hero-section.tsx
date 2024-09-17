@@ -23,13 +23,14 @@ export default function HomeHero() {
 function HomeCard() {
   return (
     <div className="flex flex-col bg-lightOrange rounded-[10px] w-full xl:max-w-[643px] p-10">
-      <p className="text-myBlack font-semibold">New Arrival</p>
-      <p className="text-myOrange text-3xl md:text-5xl lg:text-[52px] font-bold">
+      <p className="text-myBlack font-semibold mb-4">New Arrival</p>
+      <p className="text-myOrange text-4xl md:text-5xl lg:text-[52px] lg:leading-[55px] font-bold">
         Discover Our New Collection
       </p>
-      <p className="text-myBlack text-lg md:text-lg font-medium mt-3">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elitellus,
-        luctus nec ullamcorper mattis.
+      <p className="text-myBlack md:text-lg font-medium mt-1">
+        Handcrafted with precision, our wood woven chair blends natural
+        materials with modern design. Perfect for adding warmth and character to
+        any space, it offers both style and comfort.
       </p>
       <Button
         asChild

@@ -11,11 +11,9 @@ import IndividualProduct from "@/app/_components/indvidual-product";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
 } from "@/components/ui/pagination";
 
 export default function ShopProducts() {
@@ -55,7 +53,7 @@ export default function ShopProducts() {
         </div>
       </section>
 
-      <div className="container grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-7 w-full mb-[50px]">
+      <div className="container grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-7 w-full my-[50px]">
         {productList.map((item: Products, index: number) => (
           <IndividualProduct
             key={index}
@@ -71,54 +69,46 @@ export default function ShopProducts() {
         ))}
       </div>
 
-      <Pagination className="mb-[75px] gap-5">
-        <PaginationContent>
-          <PaginationItem>
-            <PaginationPrevious href="#" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink
-              href="/shop"
-              className="py-[20px] px-[24px] h-[60px] rounded-[10px]"
-            >
-              1
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink
-              href="#"
-              className="hidden sm:flex py-[20px] px-[24px] h-[60px] rounded-[10px]"
-            >
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink
-              href="#"
-              className="hidden sm:flex py-[20px] px-[24px] h-[60px] rounded-[10px]"
-            >
-              3
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis className="w-[60px] h-[60px] rounded-[10px]" />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
+      <Pages />
     </>
+  );
+}
+
+function Pages() {
+  return (
+    <Pagination className="mb-[75px]">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationLink
+            href="/shop"
+            className="py-5 px-6 h-[60px] rounded-[10px] bg-myOrange text-white hover:bg-myOrange mr-10"
+          >
+            1
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink
+            href="#"
+            className="flex py-5 px-6 h-[60px] rounded-[10px] mr-10"
+          >
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" className="px-6" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
   );
 }
 
 type Products = {
   productImage: string;
-  discount: string;
+  discount?: string;
   description: string;
   name: string;
-  newPrice: string;
-  originalPrice: string;
+  newPrice?: number;
+  originalPrice: number;
   type: "normal" | "discount" | "new";
   id: number;
 };
