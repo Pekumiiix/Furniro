@@ -1,9 +1,15 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import ProductTable from "./product-table";
 import AddProducts from "@/app/_components/_product-comparison/add-products";
+import { useState } from "react";
 
 export default function SelectedProducts() {
+  const [comparison, setComparison] =
+    useState<comparedProduct[]>(comparedProducts);
+
   return (
     <>
       <section className="container w-full grid md:grid-cols-4 gap-5 h-fit pt-10 pb-16">
@@ -21,10 +27,25 @@ export default function SelectedProducts() {
           </Button>
         </div>
 
-        <AddProducts />
+        <AddProducts comparison={comparison} setComparison={setComparison} />
       </section>
 
       <ProductTable />
     </>
   );
 }
+
+const comparedProducts: ProductList[] = [];
+
+interface ProductList {
+  id: number;
+  type: "normal" | "discount" | "new";
+  productImage: string;
+  name: string;
+  description: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
+}
+
+type comparedProduct = ProductList;

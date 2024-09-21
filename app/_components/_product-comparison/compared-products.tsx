@@ -29,15 +29,15 @@ export default function Products({ item }: { item: ProductList[] }) {
               <div className={`flex items-center gap-2`}>
                 <p className="text-[#3A3A3A] text-sm font-semibold">
                   {product.type === "discount"
-                    ? "₦" + product.newPrice
-                    : "₦" + product.originalPrice}
+                    ? "₦" + product.newPrice?.toLocaleString()
+                    : "₦" + product.originalPrice.toLocaleString()}
                 </p>
                 <p
                   className={`${
                     product.type === "discount" ? "flex" : "hidden"
                   } text-[#B0B0B0] text-sm font-medium line-through`}
                 >
-                  {"₦" + product.originalPrice}
+                  {"₦" + product.originalPrice.toLocaleString()}
                 </p>
               </div>
               <div className="flex items-center gap-4">

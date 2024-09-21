@@ -11,15 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export default function AddProducts() {
-  const [comparison, setComparison] =
-    useState<comparedProduct[]>(comparedProducts);
-
+export default function AddProducts({ comparison, setComparison }: any) {
   function handleClick(index: number) {
     const newProduct = productList[index];
 
-    setComparison((c) => {
-      if (c.some((product) => product.id === newProduct.id)) {
+    setComparison((c: ProductList[]) => {
+      if (c.some((product: ProductList) => product.id === newProduct.id)) {
         toast.error("Kindly select another product");
         return c;
       }
