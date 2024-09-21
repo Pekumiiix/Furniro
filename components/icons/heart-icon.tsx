@@ -1,4 +1,4 @@
-export default function HeartIcon(props: any) {
+export default function HeartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 26 24"

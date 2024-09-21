@@ -1,4 +1,4 @@
-export default function NavMenuIcon(props: any) {
+export default function NavMenuIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 20 20"

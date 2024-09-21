@@ -16,7 +16,7 @@ export default function IndividualProduct({
       <p
         className={`${type === "normal" ? "hidden" : "flex"} ${
           type === "discount" ? "p-2 bg-[#E97171]" : "py-2 px-3 bg-[#2EC1AC]"
-        } text-white font-medium rounded-full absolute top-5 right-5`}
+        } text-white font-medium rounded-full absolute top-5 right-5 text-xs`}
       >
         {type === "discount" ? discount : "New"}
       </p>
@@ -33,22 +33,24 @@ export default function IndividualProduct({
 
       <Link
         href={`/shop/${id}`}
-        className="flex flex-col gap-3 bg-[#F4F5F7] px-3 pt-3 pb-4"
+        className="flex flex-col gap-1 bg-[#F4F5F7] px-3 pt-3 pb-4"
       >
         <div className="flex flex-col">
-          <p className="text-[#3A3A3A] text-2xl font-semibold">{name}</p>
-          <p className="text-[#898989] font-medium">{description}</p>
+          <p className="text-[#3A3A3A] text-xl font-semibold">{name}</p>
+          <p className="text-[#898989] text-sm font-medium">{description}</p>
         </div>
         <div className={`flex items-center gap-2`}>
-          <p className="text-[#3A3A3A] text-xl font-semibold">
-            {type === "discount" ? "₦" + newPrice : "₦" + originalPrice}
+          <p className="text-[#3A3A3A] text-sm font-semibold">
+            {type === "discount"
+              ? "₦" + newPrice?.toLocaleString()
+              : "₦" + originalPrice.toLocaleString()}
           </p>
           <p
             className={`${
               type === "discount" ? "flex" : "hidden"
-            } text-[#B0B0B0] line-through`}
+            } text-[#B0B0B0] line-through text-xs`}
           >
-            {"₦" + originalPrice}
+            {"₦" + originalPrice.toLocaleString()}
           </p>
         </div>
       </Link>

@@ -1,21 +1,20 @@
-export default function EmptyCart(props: any) {
+export default function EmptyCart(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
-      fill="#000000"
-      height="200px"
-      width="200px"
+      fill=""
       version="1.1"
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 231.523 231.523"
       xmlSpace="preserve"
+      {...props}
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         <g>

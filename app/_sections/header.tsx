@@ -30,9 +30,10 @@ export default function Header() {
             alt="Furniro Logo"
             width={50}
             height={32}
+            className="h-5 w-auto sm:w-[50px] sm:h-[32px]"
           />
 
-          <p className="text-4xl text-black font-bold">Furniro</p>
+          <p className="text-2xl sm:text-4xl text-black font-bold">Furniro</p>
         </Link>
 
         <LinkNav />
@@ -68,7 +69,7 @@ function LinkNav() {
         variant={`default`}
         className="bg-transparent hover:bg-transparent group flex lg:hidden"
       >
-        <SearchIcon className="w-8 h-8 stroke-black group-hover:stroke-myOrange transition-all duration-300" />
+        <SearchIcon className="w-5 h-5 sm:w-8 sm:h-8 stroke-black group-hover:stroke-myOrange transition-all duration-300" />
       </Button>
 
       <DropDown />
@@ -80,7 +81,7 @@ function DropDown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex lg:hidden">
-        <NavMenuIcon className="w-8 h-8 fill-black hover:fill-myOrange transition-all duration-300" />
+        <NavMenuIcon className="w-5 h-5 sm:w-8 sm:h-8 fill-black hover:fill-myOrange transition-all duration-300" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-screen">
         <DropdownMenuLabel className="text-[#9F9F9F] text-sm">

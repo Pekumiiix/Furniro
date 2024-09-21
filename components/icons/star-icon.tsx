@@ -1,4 +1,4 @@
-export default function StarIcon(props: any) {
+export default function StarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"

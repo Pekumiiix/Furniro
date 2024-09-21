@@ -1,4 +1,4 @@
-export default function BinIcon(props: any) {
+export default function BinIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 22 22"

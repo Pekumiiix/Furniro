@@ -1,4 +1,4 @@
-export default function CartIcon(props: any) {
+export default function CartIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 26 23"

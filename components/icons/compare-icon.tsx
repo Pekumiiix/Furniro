@@ -1,4 +1,4 @@
-export default function CompareIcon(props: any) {
+export default function CompareIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 16 16"

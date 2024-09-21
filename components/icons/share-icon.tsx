@@ -1,4 +1,4 @@
-export default function ShareIcon(props: any) {
+export default function ShareIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 16 16"
