@@ -1,8 +1,6 @@
-import ProductHover from "@/app/_components/product-hover";
-import Link from "next/link";
 import { productList } from "@/app/_data/product";
-import { Button } from "@/components/ui/button";
 import IndividualProduct from "@/app/_components/indvidual-product";
+import LinkOutlineButton from "@/app/_components/link-btn-outline";
 
 export default function Products() {
   return (
@@ -12,7 +10,7 @@ export default function Products() {
       </p>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-7 w-full">
-        {productList.map((item: Products, index: number) => (
+        {productList.slice(0, 8).map((item: Products, index: number) => (
           <IndividualProduct
             key={index}
             id={item.id}
@@ -27,13 +25,11 @@ export default function Products() {
         ))}
       </div>
 
-      <Button
-        asChild
-        variant={`outline`}
-        className="text-myOrange font-semibold outline-myOrange border-myOrange max-w-[245px] max-h-12 hover:text-[rgba(184,142,47,0.8)]"
-      >
-        <Link href={`/shop`}>Load more</Link>
-      </Button>
+      <LinkOutlineButton
+        text="Load more"
+        link="/shop"
+        className="max-w-[245px] max-h-12"
+      />
     </section>
   );
 }

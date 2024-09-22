@@ -42,15 +42,15 @@ export default function ProductDetails({ product }: any) {
             <div className="flex items-center gap-2">
               <p className="text-xl text-myBlack">
                 {product.type === "discount"
-                  ? "₦" + product.newPrice
-                  : "₦" + product.originalPrice}
+                  ? "₦" + product.newPrice.toLocaleString()
+                  : "₦" + product.originalPrice.toLocaleString()}
               </p>
               <p
                 className={`${
                   product.type === "discount" ? "flex" : "hidden"
                 } text-xl text-[#9F9F9F] line-through`}
               >
-                {"₦" + product.originalPrice}
+                {"₦" + product.originalPrice.toLocaleString()}
               </p>
             </div>
           </div>
