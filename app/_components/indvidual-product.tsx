@@ -36,11 +36,11 @@ export default function IndividualProduct({
         href={`/shop/${id}`}
         className="flex flex-col gap-1 bg-[#F4F5F7] px-3 pt-3 pb-4"
       >
-        <div className="flex flex-col">
+        <>
           <p className="text-[#3A3A3A] text-xl font-semibold">{name}</p>
           <p className="text-[#898989] text-sm font-medium">{description}</p>
-        </div>
-        <div className={`flex items-center gap-2`}>
+        </>
+        <span className={`flex items-center gap-2`}>
           <p className="text-[#3A3A3A] text-sm font-semibold">
             {type === "discount"
               ? "₦" + newPrice?.toLocaleString()
@@ -53,7 +53,7 @@ export default function IndividualProduct({
           >
             {"₦" + originalPrice.toLocaleString()}
           </p>
-        </div>
+        </span>
       </Link>
     </div>
   );

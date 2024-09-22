@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function BlogCard({ image, header }: Blog) {
   return (
-    <Link href={`/`} className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3">
       <Image
         src={image}
         alt="Blog"
@@ -64,7 +64,7 @@ export default function BlogCard({ image, header }: Blog) {
           <Link href={`/`}>Read More</Link>
         </Button>
       </div>
-    </Link>
+    </div>
   );
 }
 
