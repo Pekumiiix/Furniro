@@ -10,10 +10,9 @@ export default function IndividualProduct({
   originalPrice,
   type,
   id,
-  className,
 }: Products) {
   return (
-    <div className={`relative ${className ? className : "flex"} flex-col`}>
+    <div className={`relative flex flex-col`}>
       <p
         className={`${type === "normal" ? "hidden" : "flex"} ${
           type === "discount" ? "p-2 bg-[#E97171]" : "py-2 px-3 bg-[#2EC1AC]"
@@ -60,7 +59,6 @@ export default function IndividualProduct({
 }
 
 type Products = {
-  className?: string;
   type: "normal" | "discount" | "new";
   id: number;
   productImage: string;
