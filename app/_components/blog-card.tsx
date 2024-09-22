@@ -40,7 +40,7 @@ export default function BlogCard({ image, header }: Blog) {
             </div>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-1.5">
             <p className="text-xl md:text-[30px] font-medium">{header}</p>
             <p className="text-[13px] md:text-[15px] text-[#9F9F9F]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
