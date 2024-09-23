@@ -3,8 +3,15 @@ import HeartIcon from "@/components/icons/heart-icon";
 import ShareIcon from "@/components/icons/share-icon";
 import { Button } from "@/components/ui/button";
 import { ReactElement } from "react";
+import { handleShare } from "../_functions/share-product";
 
-export default function ProductHover() {
+export default function ProductHover({
+  id,
+  description,
+}: {
+  id: number;
+  description: string;
+}) {
   return (
     <div className="absolute top-0 w-full h-full hidden group-hover:flex flex-col items-center justify-center gap-6 bg-[rgba(58,58,58,0.5)]">
       <Button
@@ -15,19 +22,27 @@ export default function ProductHover() {
       </Button>
 
       <div className="w-[95%] flex items-center justify-between">
-        <Button className="flex items-center gap-0.5 z-[0] group/item p-1 bg-transparent hover:bg-transparent">
+        <Button
+          onClick={() =>
+            handleShare({
+              description: description,
+              id: id,
+            })
+          }
+          className="flex items-center gap-1.5 z-[0] group/item p-1 bg-transparent hover:bg-transparent"
+        >
           {actions[0].icon}
           <p className="text-white font-semibold group-hover/item:text-myOrange transition-all duration-300">
             {actions[0].name}
           </p>
         </Button>
-        <Button className="flex items-center gap-0.5 group/compare p-1 bg-transparent hover:bg-transparent">
+        <Button className="flex items-center gap-1.5 group/compare p-1 bg-transparent hover:bg-transparent">
           {actions[1].icon}
           <p className="text-white font-semibold group-hover/compare:text-myOrange transition-all duration-300">
             {actions[1].name}
           </p>
         </Button>
-        <Button className="flex items-center gap-0.5 group/like p-1 bg-transparent hover:bg-transparent">
+        <Button className="flex items-center gap-1.5 group/like p-1 bg-transparent hover:bg-transparent">
           {actions[2].icon}
           <p className="text-white font-semibold group-hover/like:text-myOrange transition-all duration-300">
             {actions[2].name}
@@ -36,11 +51,6 @@ export default function ProductHover() {
       </div>
     </div>
   );
-}
-
-interface Actions {
-  icon?: ReactElement;
-  name?: string;
 }
 
 const actions: Actions[] = [
@@ -63,3 +73,8 @@ const actions: Actions[] = [
     name: "Like",
   },
 ];
+
+interface Actions {
+  icon: ReactElement;
+  name: string;
+}

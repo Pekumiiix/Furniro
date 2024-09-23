@@ -14,6 +14,14 @@ export default function SingleProduct({ params }: any) {
     (p) => p.id === Number.parseInt(params.productId)
   );
 
+  if (!product) {
+    return (
+      <section className="w-full">
+        <p className="text-center py-10">Product not found.</p>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full">
       <Breadcrumb className="w-full h-[100px] container flex items-center bg-[#F9F1E7]">
@@ -31,7 +39,7 @@ export default function SingleProduct({ params }: any) {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{product?.name}</BreadcrumbPage>
+            <BreadcrumbPage>{product.name}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

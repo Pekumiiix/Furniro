@@ -28,7 +28,7 @@ export default function IndividualProduct({
           className="w-full max-h-[301px]"
         />
 
-        <ProductHover />
+        <ProductHover id={id} description={description} />
       </div>
 
       <Link

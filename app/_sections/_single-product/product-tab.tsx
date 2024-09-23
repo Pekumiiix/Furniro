@@ -3,7 +3,7 @@ import ProductDescription from "./_tabs/description";
 import AdditionalInformation from "./_tabs/additional-information";
 import Reviews from "./_tabs/reviews";
 
-export default function ProductTab() {
+export default function ProductTab({ product }: ProductProps) {
   return (
     <Tabs defaultValue="description" className="container w-full">
       <TabsList className="w-full h-fit justify-start md:justify-center md:gap-10 bg-transparent overflow-y-auto">
@@ -30,11 +30,26 @@ export default function ProductTab() {
         <ProductDescription />
       </TabsContent>
       <TabsContent value="information">
-        <AdditionalInformation />
+        <AdditionalInformation product={product} />
       </TabsContent>
       <TabsContent value="reviews">
         <Reviews />
       </TabsContent>
     </Tabs>
   );
+}
+
+interface ProductList {
+  id: number;
+  type: "normal" | "discount" | "new";
+  productImage: string;
+  name: string;
+  description: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
+}
+
+interface ProductProps {
+  product: ProductList;
 }

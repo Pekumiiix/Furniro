@@ -6,26 +6,11 @@ import { Link2 } from "lucide-react";
 import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
-import { toast } from "sonner";
 import CountIncrement from "@/app/_components/count-icrement";
+import { handleShare } from "@/app/_functions/share-product";
 
-export default function ProductDetails({ product }: any) {
+export default function ProductDetails({ product }: ProductDetailsProps) {
   const [count, setCount] = useState<number>(1);
-
-  function copyUrl() {
-    if (typeof window !== "undefined") {
-      const currentUrl = window.location.href;
-
-      navigator.clipboard
-        .writeText(currentUrl)
-        .then(() => {
-          toast.success("Successfully copied link");
-        })
-        .catch(() => {
-          toast.error("Failed to copy");
-        });
-    }
-  }
 
   return (
     <>
@@ -41,7 +26,7 @@ export default function ProductDetails({ product }: any) {
             <p className="text-3xl font-medium">{product.name}</p>
             <div className="flex items-center gap-2">
               <p className="text-xl text-myBlack">
-                {product.type === "discount"
+                {product.newPrice
                   ? "₦" + product.newPrice.toLocaleString()
                   : "₦" + product.originalPrice.toLocaleString()}
               </p>
@@ -101,7 +86,12 @@ export default function ProductDetails({ product }: any) {
 
             <Button
               className="gap-1 py-1 px-2 bg-transparent hover:bg-transparent text-black"
-              onClick={copyUrl}
+              onClick={() =>
+                handleShare({
+                  description: product.description,
+                  id: product.id,
+                })
+              }
             >
               Link <Link2 />
             </Button>
@@ -109,7 +99,7 @@ export default function ProductDetails({ product }: any) {
         </div>
       </section>
 
-      <ProductTab />
+      <ProductTab product={product} />
 
       <RelatedProducts />
     </>
@@ -127,6 +117,7 @@ function Size() {
 
     setSize(updatedList);
   };
+
   return (
     <div className="flex flex-col gap-1.5">
       <p className="text-sm text-[#9F9F9F]">Size</p>
@@ -201,16 +192,6 @@ function Color() {
   );
 }
 
-interface Size {
-  size: string;
-  isActive: boolean;
-}
-
-interface Color {
-  color: string;
-  isActive: boolean;
-}
-
 const productSizes: Size[] = [
   { size: "XS", isActive: true },
   { size: "L", isActive: false },
@@ -222,3 +203,28 @@ const colors: Color[] = [
   { color: "black", isActive: false },
   { color: "yellow", isActive: false },
 ];
+
+interface ProductList {
+  id: number;
+  type: "normal" | "discount" | "new";
+  productImage: string;
+  name: string;
+  description: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
+}
+
+interface ProductDetailsProps {
+  product: ProductList;
+}
+
+interface Size {
+  size: string;
+  isActive: boolean;
+}
+
+interface Color {
+  color: string;
+  isActive: boolean;
+}
