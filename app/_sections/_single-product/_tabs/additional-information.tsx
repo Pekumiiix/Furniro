@@ -1,18 +1,6 @@
 import { additionalInformation } from "@/app/_data/additional-iformation";
 
-export default function AdditionalInformation({ product }: ProductProps) {
-  const info = additionalInformation.find((a) => a.id === product.id);
-
-  //console.log("Found Info:", info); Log the result of the find() operation
-
-  if (!info) {
-    return (
-      <section className="flex items-center justify-center">
-        <p>Info not found</p>
-      </section>
-    );
-  }
-
+export default function AdditionalInformation({ info }: ProductProps) {
   return (
     <section className="grid md:grid-cols-3 lg:flex gap-10">
       <General general={info.general} />
@@ -118,19 +106,16 @@ function Warranty({ warranty }: { warranty: WarrantyInfo }) {
 }
 
 // Define proper types for the props
-interface ProductList {
+interface AdditionalInformation {
   id: number;
-  type: "normal" | "discount" | "new";
-  productImage: string;
-  name: string;
-  description: string;
-  newPrice?: number;
-  originalPrice: number;
-  discount?: string;
+  general: GeneralInfo;
+  product: ProductInfo;
+  dimension: DimensionInfo;
+  warranty: WarrantyInfo;
 }
 
 interface ProductProps {
-  product: ProductList;
+  info: AdditionalInformation;
 }
 
 interface GeneralInfo {

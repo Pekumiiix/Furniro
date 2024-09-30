@@ -2,8 +2,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ProductDescription from "./_tabs/description";
 import AdditionalInformation from "./_tabs/additional-information";
 import Reviews from "./_tabs/reviews";
+import { additionalInformation } from "@/app/_data/additional-iformation";
 
 export default function ProductTab({ product }: ProductProps) {
+  const info = additionalInformation.find((a) => a.id === product.id);
+
+  if (!info) {
+    return (
+      <section className="flex items-center justify-center">
+        <p>Info not found</p>
+      </section>
+    );
+  }
+
   return (
     <Tabs defaultValue="description" className="container w-full">
       <TabsList className="w-full h-fit justify-start md:justify-center md:gap-10 bg-transparent overflow-y-auto">
@@ -30,7 +41,7 @@ export default function ProductTab({ product }: ProductProps) {
         <ProductDescription />
       </TabsContent>
       <TabsContent value="information">
-        <AdditionalInformation product={product} />
+        <AdditionalInformation info={info} />
       </TabsContent>
       <TabsContent value="reviews">
         <Reviews />
