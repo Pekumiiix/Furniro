@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
 import Products from "./compared-products";
-import { toast } from "sonner";
 import { productList } from "@/app/_data/product";
 import {
   DropdownMenu,
@@ -10,23 +8,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useComparison } from "@/app/_hooks/app-context";
 
-export default function AddProducts({ comparison, setComparison }: any) {
+export default function AddProducts() {
+  const { comparison, addToComparison } = useComparison();
+
   function handleClick(index: number) {
     const newProduct = productList[index];
 
-    setComparison((c: ProductList[]) => {
-      if (c.some((product: ProductList) => product.id === newProduct.id)) {
-        toast.error("Kindly select another product");
-        return c;
-      }
-      return [...c, newProduct];
-    });
+    addToComparison(newProduct);
   }
 
   return (
     <>
-      <Products item={comparison} />
+      <Products />
 
       <div
         className={`${
@@ -58,15 +53,15 @@ export default function AddProducts({ comparison, setComparison }: any) {
                   <div className={`flex items-center gap-2`}>
                     <p className="text-[#3A3A3A] text-xs font-semibold">
                       {item.type === "discount"
-                        ? "₦" + item.newPrice
-                        : "₦" + item.originalPrice}
+                        ? "₦" + item.newPrice?.toLocaleString()
+                        : "₦" + item.originalPrice.toLocaleString()}
                     </p>
                     <p
                       className={`${
                         item.type === "discount" ? "flex" : "hidden"
                       } text-[#B0B0B0] line-through text-xs`}
                     >
-                      {"₦" + item.originalPrice}
+                      {"₦" + item.originalPrice.toLocaleString()}
                     </p>
                   </div>
                 </div>
@@ -79,8 +74,6 @@ export default function AddProducts({ comparison, setComparison }: any) {
   );
 }
 
-const comparedProducts: ProductList[] = [];
-
 interface ProductList {
   id: number;
   type: "normal" | "discount" | "new";
@@ -91,5 +84,3 @@ interface ProductList {
   originalPrice: number;
   discount?: string;
 }
-
-type comparedProduct = ProductList;
