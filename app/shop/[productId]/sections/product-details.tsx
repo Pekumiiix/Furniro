@@ -7,7 +7,7 @@ import ProductTab from "./product-tab";
 import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
 import CountIncrement from "@/app/_components/count-icrement";
-import { handleShare } from "@/app/_functions/share-product";
+import { handleShare } from "@/app/functions/share-product";
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const [count, setCount] = useState<number>(1);

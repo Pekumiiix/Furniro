@@ -1,6 +1,6 @@
 import StarIcon from "@/components/icons/star-icon";
 import { Button } from "@/components/ui/button";
-import { useComparison } from "@/app/_hooks/app-context";
+import { useComparison } from "@/app/hooks/app-context";
 
 export default function Products() {
   const { comparison } = useComparison();

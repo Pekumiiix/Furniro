@@ -1,14 +1,14 @@
 "use client";
 
 import Products from "./compared-products";
-import { productList } from "@/app/_data/product";
+import { productList } from "@/app/data/product";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useComparison } from "@/app/_hooks/app-context";
+import { useComparison } from "@/app/hooks/app-context";
 
 export default function AddProducts() {
   const { comparison, addToComparison } = useComparison();

@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { productList } from "@/app/_data/product";
+import { productList } from "@/app/data/product";
 import IndividualProduct from "@/app/_components/indvidual-product";
 import {
   Pagination,

@@ -1,4 +1,4 @@
-import { additionalInformation } from "@/app/_data/additional-iformation";
+import { additionalInformation } from "@/app/data/additional-iformation";
 
 export default function AdditionalInformation({ info }: ProductProps) {
   return (

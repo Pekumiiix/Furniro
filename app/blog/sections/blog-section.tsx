@@ -1,8 +1,19 @@
-import { Button } from "@/components/ui/button";
+//import BlogCard from "../components/blog-card";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function BlogCard({ image, header }: Blog) {
+export default function BlogSection() {
+  return (
+    <section className="flex flex-col gap-12 w-full lg:w-[820px]">
+      {blog.map((item: Blog, index: number) => (
+        <BlogCard key={index} image={item.image} header={item.header} />
+      ))}
+    </section>
+  );
+}
+
+function BlogCard({ image, header }: Blog) {
   return (
     <div className="flex flex-col gap-3">
       <Image
@@ -67,6 +78,21 @@ export default function BlogCard({ image, header }: Blog) {
     </div>
   );
 }
+
+const blog: Blog[] = [
+  {
+    image: "/assets/images/blog/blog1.png",
+    header: "Going all-in with millennial design",
+  },
+  {
+    image: "/assets/images/blog/blog2.png",
+    header: "Exploring new ways of decorating",
+  },
+  {
+    image: "/assets/images/blog/blog3.png",
+    header: "Handmade pieces that took time to make",
+  },
+];
 
 interface Blog {
   image: string;

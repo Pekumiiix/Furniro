@@ -1,7 +1,7 @@
 "use client";
 
-import { useComparison } from "@/app/_hooks/app-context";
-import { additionalInformation } from "@/app/_data/additional-iformation";
+import { useComparison } from "@/app/hooks/app-context";
+import { additionalInformation } from "@/app/data/additional-iformation";
 
 export default function ProductTable() {
   const { comparison } = useComparison();

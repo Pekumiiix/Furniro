@@ -1,10 +1,13 @@
-import { productList } from "@/app/_data/product";
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useComparison } from "@/app/hooks/app-context";
+import { cartTotal } from "@/app/functions/cart-totals";
 
 export default function CheckoutDetails() {
-  let count = 1;
+  const { cartItems } = useComparison();
 
   return (
     <>
@@ -15,23 +18,24 @@ export default function CheckoutDetails() {
             <p className="font-medium text-lg">Subtotal</p>
           </div>
 
-          {productList.map((item, index) => (
+          {cartItems.map((item, index) => (
             <div className="flex items-center justify-between" key={index}>
               <p className="font-medium text-sm text-[#9F9F9F]">
-                {item.name + " x " + count}
+                {item.name + " x " + item.count}
               </p>
-              <p className="font-light text-sm">{item.originalPrice}</p>
+              <p className="font-light text-sm">
+                {item.newPrice
+                  ? "₦" + item.newPrice.toLocaleString()
+                  : "₦" + item.originalPrice.toLocaleString()}
+              </p>
             </div>
           ))}
 
           <div className="flex items-center justify-between">
-            <p className="text-sm">Subtotal</p>
-            <p className="font-light text-sm">Rs. 250,000.00</p>
-          </div>
-
-          <div className="flex items-center justify-between">
-            <p className="text-sm">Total</p>
-            <p className="font-medium text-xl text-myOrange">Rs. 250,000.00</p>
+            <p className="text-sm">Total:</p>
+            <p className="font-medium text-xl text-myOrange">
+              ₦{cartTotal().toLocaleString()}
+            </p>
           </div>
         </div>
 

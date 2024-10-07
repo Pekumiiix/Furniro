@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableBody,
@@ -8,46 +10,16 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import BinIcon from "@/components/icons/bin-icon";
-import Link from "next/link";
-import EmptyCart from "@/components/icons/empty-cart";
 import CountIncrement from "@/app/_components/count-icrement";
+import { useComparison } from "@/app/hooks/app-context";
+import EmptyCartState from "@/app/_components/empty-cart-state";
 
-export default function CartList({ product, setProduct }: any) {
-  function increaseCount(index: number) {
-    setProduct(
-      product.map((item: ProductList, i: number) =>
-        i === index ? { ...item, count: item.count + 1 } : item
-      )
-    );
-  }
+export default function CartList() {
+  const { cartItems, removeFromCart, increaseItemCount, decreaseItemCount } =
+    useComparison();
 
-  function decreaseCount(index: number) {
-    setProduct(
-      product.map((item: ProductList, i: number) =>
-        i === index && item.count > 1
-          ? { ...item, count: item.count - 1 }
-          : item
-      )
-    );
-  }
-
-  if (product.length === 0) {
-    return (
-      <section className="col-span-4 lg:w-full h-fit flex flex-col items-center justify-center gap-5">
-        <EmptyCart className="w-[100px] h-[100px] fill-myBlack" />
-        <div className="flex flex-col gap-3 items-center">
-          <p className="text-xl text-myBlack font-semibold">
-            Your cart is empty.
-          </p>
-          <Button
-            asChild
-            className="font-white bg-myOrange font-medium hover:bg-[#b88e2fcc]"
-          >
-            <Link href={`/shop`}>Add Items</Link>
-          </Button>
-        </div>
-      </section>
-    );
+  if (cartItems.length === 0) {
+    return <EmptyCartState />;
   }
 
   return (
@@ -64,7 +36,7 @@ export default function CartList({ product, setProduct }: any) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {product.map((item: ProductList, index: number) => (
+          {cartItems.map((item: ProductList, index: number) => (
             <TableRow key={index} className="hover:bg-transparent">
               <TableCell className="font-medium">
                 <div className="flex items-center gap-3">
@@ -91,19 +63,15 @@ export default function CartList({ product, setProduct }: any) {
               </TableCell>
               <TableCell>
                 <CountIncrement
-                  increaseFunction={() => increaseCount(index)}
-                  decreaseFunction={() => decreaseCount(index)}
+                  increaseFunction={() => increaseItemCount(item.id)}
+                  decreaseFunction={() => decreaseItemCount(item.id)}
                   count={item.count}
                 />
               </TableCell>
               <TableCell className="text-center">
                 <Button
                   className="bg-transparent group hover:bg-transparent"
-                  onClick={() =>
-                    setProduct(
-                      product.filter((_: any, i: number) => i !== index)
-                    )
-                  }
+                  onClick={() => removeFromCart(item.id)}
                 >
                   <BinIcon className="w-[22px] h-[22px] fill-[#b88e2fcc] group-hover:fill-myOrange transition-all duration-300" />
                 </Button>

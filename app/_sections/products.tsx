@@ -1,4 +1,4 @@
-import { productList } from "@/app/_data/product";
+import { productList } from "@/app/data/product";
 import IndividualProduct from "@/app/_components/indvidual-product";
 import LinkOutlineButton from "@/app/_components/link-btn-outline";
 

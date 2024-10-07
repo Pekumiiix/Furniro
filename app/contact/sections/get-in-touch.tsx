@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ContactForm } from "./contact-fom";
+import { ContactForm } from "../components/contact-fom";
 
 export default function GetInTouch() {
   return (

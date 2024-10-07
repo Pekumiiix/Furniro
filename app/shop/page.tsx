@@ -1,5 +1,5 @@
-import ShopProducts from "../_sections/_shop/shop-products";
-import Perks from "../_sections/_shop/perks";
+import ShopProducts from "./sections/shop-products";
+import Perks from "../_components/perks";
 import PageHero from "../_components/page-hero";
 
 export default function Shop() {

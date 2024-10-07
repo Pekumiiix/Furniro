@@ -1,56 +1,20 @@
 "use client";
 
-import { useState } from "react";
 import { X } from "lucide-react";
 import LinkOutlineButton from "./link-btn-outline";
+import { useComparison } from "../hooks/app-context";
+import { cartTotal } from "../functions/cart-totals";
 
 export default function CartDialog() {
-  const [list, setList] = useState<ProductList[]>([
-    {
-      id: 1,
-      type: "discount",
-      productImage: "/assets/images/products/syltherine.png",
-      name: "Syltherine",
-      description: "Stylish cafe chair",
-      newPrice: 2500000,
-      originalPrice: 3500000,
-      discount: "-30%",
-      count: 2,
-    },
-    {
-      id: 2,
-      type: "normal",
-      productImage: "/assets/images/products/syltherine.png",
-      name: "Leviosa",
-      description: "Stylish cafe chair",
-      originalPrice: 2500000,
-      discount: "",
-      count: 1,
-    },
-  ]);
-
-  const removeFunction = (id: number) => {
-    setList((prevList) => prevList.filter((item) => item.id !== id));
-  };
-
-  const total = () => {
-    return list.reduce((acc, item) => {
-      const price =
-        item.type === "discount" && item.newPrice !== undefined
-          ? item.newPrice
-          : item.originalPrice;
-
-      return acc + price * (item.count || 1);
-    }, 0);
-  };
+  const { cartItems, removeFromCart } = useComparison();
 
   return (
-    <div className="flex flex-col w-[417px] h-[500px] absolute right-0 bg-white">
+    <div className="flex flex-col w-[417px] h-[500px] absolute right-0 bg-white overflow-y-auto">
       <p className="text-2xl font-semibold pt-2.5 pb-3 border-b border-[#D9D9D9] px-3">
         Shopping Cart
       </p>
 
-      {list.length === 0 ? (
+      {cartItems.length === 0 ? (
         <div className="flex flex-col w-full h-full items-center justify-center gap-2">
           <p className="text-sm text-myBlack">Cart is currently empty.</p>
           <LinkOutlineButton text="Add items" link={`/shop`} />
@@ -58,25 +22,25 @@ export default function CartDialog() {
       ) : (
         <>
           <div className="flex flex-col gap-3 px-3 mt-7">
-            {list.map((item: ProductList, index: number) => (
+            {cartItems.map((item: ProductList, index: number) => (
               <CartItem
                 key={index}
                 item={item}
-                removeFunction={() => removeFunction(item.id)}
+                removeFunction={() => removeFromCart(item.id)}
               />
             ))}
           </div>
 
-          <div className="absolute bottom-0 flex flex-col w-full">
-            <p className="w-full pb-3 border-b border-[#D9D9D9] text-sm px-3">
-              Total:{" "}
-              <span className="text-myOrange">₦{total().toLocaleString()}</span>
-            </p>
+          <p className="w-full py-3 text-sm px-3">
+            Total:{" "}
+            <span className="text-myOrange">
+              ₦{cartTotal().toLocaleString()}
+            </span>
+          </p>
 
-            <div className="flex w-full gap-3 mt-3 pb-3 px-3">
-              <LinkOutlineButton text="Cart" link={`/cart`} />
-              <LinkOutlineButton text="Checkout" link={`/checkout`} />
-            </div>
+          <div className="flex w-full gap-3 mt-3 pb-3 px-3 border-t border-[#D9D9D9] bg-white absolute bottom-0 pt-2">
+            <LinkOutlineButton text="Cart" link={`/cart`} />
+            <LinkOutlineButton text="Checkout" link={`/checkout`} />
           </div>
         </>
       )}

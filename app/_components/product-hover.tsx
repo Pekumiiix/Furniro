@@ -5,10 +5,10 @@ import HeartIcon from "@/components/icons/heart-icon";
 import ShareIcon from "@/components/icons/share-icon";
 import { Button } from "@/components/ui/button";
 import { ReactElement } from "react";
-import { handleShare } from "../_functions/share-product";
+import { handleShare } from "../functions/share-product";
 import { useRouter } from "next/navigation";
-import { productList } from "../_data/product";
-import { useComparison } from "@/app/_hooks/app-context";
+import { productList } from "../data/product";
+import { useComparison } from "@/app/hooks/app-context";
 
 export default function ProductHover({
   id,
@@ -17,7 +17,7 @@ export default function ProductHover({
   id: number;
   description: string;
 }) {
-  const { addToComparison } = useComparison();
+  const { addToComparison, addToCart } = useComparison();
   const router = useRouter();
   const product = productList.find((p) => p.id === id);
 
@@ -32,6 +32,7 @@ export default function ProductHover({
     <div className="absolute top-0 w-full h-full hidden group-hover:flex flex-col items-center justify-center gap-6 bg-[rgba(58,58,58,0.5)]">
       <Button
         variant={`default`}
+        onClick={() => addToCart(id)}
         className="bg-white text-myOrange hover:bg-lightOrange font-semibold px-6 transition-all duration-300 rounded-[3px]"
       >
         Add to cart

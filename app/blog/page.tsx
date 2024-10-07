@@ -1,5 +1,5 @@
-import BlogSection from "../_sections/_blog/blog-section";
-import RecentBlog from "../_sections/_blog/recent-blog";
+import BlogSection from "./sections/blog-section";
+import RecentBlog from "./sections/recent-blog";
 import PageHero from "../_components/page-hero";
 
 export default function BlogPage() {

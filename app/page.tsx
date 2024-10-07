@@ -1,7 +1,7 @@
-import HomeHero from "./_sections/_home/hero-section";
-import Inspirations from "./_sections/_home/inspiration";
-import Products from "./_sections/_home/products";
-import Range from "./_sections/_home/range";
+import HomeHero from "./_sections/hero-section";
+import Inspirations from "./_sections/inspiration";
+import Products from "./_sections/products";
+import Range from "./_sections/range";
 
 export default function Home() {
   return (

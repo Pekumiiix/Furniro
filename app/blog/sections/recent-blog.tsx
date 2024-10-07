@@ -1,4 +1,5 @@
-import RecentBlogCard from "@/app/_components/recent-blog-card";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function RecentBlog() {
   return (
@@ -11,6 +12,25 @@ export default function RecentBlog() {
         ))}
       </div>
     </section>
+  );
+}
+
+function RecentBlogCard({ image, header }: Recent) {
+  return (
+    <Link href={`/`} className="flex gap-2.5">
+      <Image
+        src={image}
+        alt=""
+        height={80}
+        width={80}
+        className="rounded-[10px]"
+      />
+
+      <div className="flex flex-col justify-center">
+        <p className="text-sm">{header}</p>
+        <p className="text-xs text-[#9F9F9F]">17 Sept, 2024</p>
+      </div>
+    </Link>
   );
 }
 

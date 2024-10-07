@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -23,6 +22,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import CheckoutDetails from "./checkout-details";
+import { useComparison } from "@/app/hooks/app-context";
+import EmptyCartState from "@/app/_components/empty-cart-state";
 
 const formSchema = z.object({
   firstname: z.string().min(2, {
@@ -78,8 +79,18 @@ export default function CheckoutForm() {
     },
   });
 
+  const { cartItems } = useComparison();
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="flex items-center justify-center w-full py-[100px]">
+        <EmptyCartState />
+      </div>
+    );
   }
 
   return (

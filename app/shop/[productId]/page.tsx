@@ -6,8 +6,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import ProductDetails from "../../_sections/_single-product/product-details";
-import { productList } from "@/app/_data/product";
+import ProductDetails from "./sections/product-details";
+import { productList } from "@/app/data/product";
 
 export default function SingleProduct({ params }: any) {
   const product = productList.find(

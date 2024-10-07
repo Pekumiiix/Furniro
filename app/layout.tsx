@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "./_sections/header";
 import Footer from "./_sections/footer";
 import { Toaster } from "sonner";
-import { AppContextProvider } from "./_hooks/app-context";
+import { AppContextProvider } from "./hooks/app-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
