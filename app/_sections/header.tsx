@@ -26,7 +26,6 @@ import CartDialog from "../_components/cart-dialog";
 import { usePathname } from "next/navigation";
 import { useCart } from "../hooks/cart-context";
 import { useLikedContext } from "../hooks/like-context";
-import LinkOutlineButton from "../_components/link-btn-outline";
 
 export default function Header() {
   return (

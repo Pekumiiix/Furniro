@@ -34,7 +34,7 @@ export default function AddProducts() {
           <DropdownMenuTrigger className="w-full bg-myOrange text-sm text-white font-medium h-10 flex items-center justify-start px-3 rounded-[7px]">
             Choose a product
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[300px] overflow-y-auto">
+          <DropdownMenuContent className="w-[300px] max-h-[400px] overflow-y-auto">
             {productList.map((item: ProductList, index: number) => (
               <DropdownMenuItem
                 key={index}
@@ -48,10 +48,12 @@ export default function AddProducts() {
                 />
 
                 <div className="flex flex-col">
-                  <p className="text-base font-semibold">{item.name}</p>
+                  <p className="text-sm font-semibold leading-none">
+                    {item.name}
+                  </p>
 
                   <div className={`flex items-center gap-2`}>
-                    <p className="text-[#3A3A3A] text-xs font-semibold">
+                    <p className="text-[#3A3A3A] text-[11px] font-semibold">
                       {item.type === "discount"
                         ? "₦" + item.newPrice?.toLocaleString()
                         : "₦" + item.originalPrice.toLocaleString()}
@@ -59,7 +61,7 @@ export default function AddProducts() {
                     <p
                       className={`${
                         item.type === "discount" ? "flex" : "hidden"
-                      } text-[#B0B0B0] line-through text-xs`}
+                      } text-[#B0B0B0] line-through text-[11px]`}
                     >
                       {"₦" + item.originalPrice.toLocaleString()}
                     </p>
