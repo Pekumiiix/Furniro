@@ -11,12 +11,12 @@ import {
 import { Button } from "@/components/ui/button";
 import BinIcon from "@/components/icons/bin-icon";
 import CountIncrement from "@/app/_components/count-icrement";
-import { useComparison } from "@/app/hooks/app-context";
+import { useCart } from "@/app/hooks/cart-context";
 import EmptyCartState from "@/app/_components/empty-cart-state";
 
 export default function CartList() {
   const { cartItems, removeFromCart, increaseItemCount, decreaseItemCount } =
-    useComparison();
+    useCart();
 
   if (cartItems.length === 0) {
     return <EmptyCartState />;

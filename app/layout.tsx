@@ -4,7 +4,9 @@ import "./globals.css";
 import Header from "./_sections/header";
 import Footer from "./_sections/footer";
 import { Toaster } from "sonner";
-import { AppContextProvider } from "./hooks/app-context";
+import { ComparisonProvider } from "./hooks/comparison-context";
+import { CartProvider } from "./hooks/cart-context";
+import { LikeProvider } from "./hooks/like-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,17 +21,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <AppContextProvider>
-      <html lang="en">
-        <body className={inter.className}>
-          <Header />
-          <main className="flex flex-col items-center justify-center">
-            {children}
-          </main>
-          <Footer />
-          <Toaster />
-        </body>
-      </html>
-    </AppContextProvider>
+    <ComparisonProvider>
+      <CartProvider>
+        <LikeProvider>
+          <html lang="en">
+            <body className={inter.className}>
+              <Header />
+              <main className="flex flex-col items-center justify-center">
+                {children}
+              </main>
+              <Footer />
+              <Toaster />
+            </body>
+          </html>
+        </LikeProvider>
+      </CartProvider>
+    </ComparisonProvider>
   );
 }

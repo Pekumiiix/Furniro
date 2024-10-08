@@ -2,43 +2,65 @@
 
 import { X } from "lucide-react";
 import LinkOutlineButton from "./link-btn-outline";
-import { useComparison } from "../hooks/app-context";
+import { useCart } from "../hooks/cart-context";
 import { cartTotal } from "../functions/cart-totals";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import HeartIcon from "@/components/icons/heart-icon";
+import { useLikedContext } from "../hooks/like-context";
 
-export default function CartDialog() {
-  const { cartItems, removeFromCart } = useComparison();
+export default function CartDialog({ type, data }: DialogProp) {
+  const { removeFromCart } = useCart();
+  const { toggleLikedItems } = useLikedContext();
 
   return (
-    <div className="flex flex-col w-[417px] h-[500px] absolute right-0 bg-white overflow-y-auto">
+    <div className="flex flex-col w-[417px] h-fit max-h-[500px] absolute right-0 bg-white overflow-y-auto">
       <p className="text-2xl font-semibold pt-2.5 pb-3 border-b border-[#D9D9D9] px-3">
-        Shopping Cart
+        {type === "Shopping Cart" ? "Shopping Cart" : "Favourites"}
       </p>
 
-      {cartItems.length === 0 ? (
-        <div className="flex flex-col w-full h-full items-center justify-center gap-2">
-          <p className="text-sm text-myBlack">Cart is currently empty.</p>
+      {data.length === 0 ? (
+        <div className="flex flex-col w-full h-full items-center justify-center gap-2 py-20">
+          <p className="text-sm text-myBlack">
+            {type === "Shopping Cart"
+              ? "Cart is currently empty."
+              : "You have not liked any products"}
+          </p>
           <LinkOutlineButton text="Add items" link={`/shop`} />
         </div>
       ) : (
         <>
           <div className="flex flex-col gap-3 px-3 mt-7">
-            {cartItems.map((item: ProductList, index: number) => (
+            {data.map((item: ProductList, index: number) => (
               <CartItem
                 key={index}
+                type={type}
                 item={item}
-                removeFunction={() => removeFromCart(item.id)}
+                removeFunction={() =>
+                  type === "Shopping Cart"
+                    ? removeFromCart(item.id)
+                    : toggleLikedItems(item.id)
+                }
               />
             ))}
           </div>
 
-          <p className="w-full py-3 text-sm px-3">
-            Total:{" "}
+          <p
+            className={`${
+              type === "Shopping Cart" ? "flex" : "hidden"
+            } w-full py-3 text-sm px-3 gap-2`}
+          >
+            <span>Total:</span>
             <span className="text-myOrange">
               ₦{cartTotal().toLocaleString()}
             </span>
           </p>
 
-          <div className="flex w-full gap-3 mt-3 pb-3 px-3 border-t border-[#D9D9D9] bg-white absolute bottom-0 pt-2">
+          <div
+            className={`${
+              type === "Shopping Cart" ? "flex" : "hidden"
+            } w-full gap-3 mt-3 pb-3 px-3 border-t border-[#D9D9D9] bg-white sticky bottom-0 pt-2`}
+          >
             <LinkOutlineButton text="Cart" link={`/cart`} />
             <LinkOutlineButton text="Checkout" link={`/checkout`} />
           </div>
@@ -48,7 +70,7 @@ export default function CartDialog() {
   );
 }
 
-function CartItem({ item, removeFunction }: itemProps) {
+function CartItem({ type, item, removeFunction }: itemProps) {
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-3">
@@ -59,26 +81,71 @@ function CartItem({ item, removeFunction }: itemProps) {
         />
 
         <div className="flex flex-col">
-          <p className="text-sm">{item.name}</p>
-          <p className="text-xs text-myBlack">
-            {item.count} X{" "}
+          <p
+            className={`${
+              type === "Shopping Cart" ? "flex" : "hidden"
+            } text-sm`}
+          >
+            {item.name}
+          </p>
+          <Button asChild variant={`link`} className="w-fit h-fit p-1 pl-0">
+            <Link
+              href={`/shop/${item.id}`}
+              className={`${type === "Favourites" ? "flex" : "hidden"} text-sm`}
+            >
+              {item.name}
+            </Link>
+          </Button>
+          <p
+            className={`${
+              type === "Shopping Cart" ? "flex" : "hidden"
+            } text-xs text-myBlack gap-1`}
+          >
+            <span>{item.count} X</span>
             <span className="text-myOrange">
               {item.type === "discount"
-                ? "₦" + item.newPrice?.toLocaleString()
-                : "₦" + item.originalPrice.toLocaleString()}
+                ? " ₦" + item.newPrice?.toLocaleString()
+                : " ₦" + item.originalPrice.toLocaleString()}
             </span>
+          </p>
+          <p
+            className={`${
+              type === "Favourites" ? "flex" : "hidden"
+            } text-xs text-gray-500`}
+          >
+            {item.type === "discount"
+              ? "₦" + item.newPrice?.toLocaleString()
+              : "₦" + item.originalPrice.toLocaleString()}
           </p>
         </div>
       </div>
 
       <div
         onClick={removeFunction}
-        className="flex items-center justify-center h-5 w-5 rounded-full bg-[#9F9F9F] text-white font-semibold leading-none text-sm"
+        className={`flex items-center justify-center h-5 w-5 rounded-full ${
+          type === "Shopping Cart" ? "bg-[#9F9F9F]" : "bg-white"
+        } text-white font-semibold leading-none text-sm`}
       >
-        <X className="w-4 h-4" />
+        <X
+          className={`${type === "Shopping Cart" ? "flex" : "hidden"} w-4 h-4`}
+        />
+        <HeartIcon
+          className={`${
+            type === "Favourites" ? "flex" : "hidden"
+          } w-6 h-6 hover:stroke-myOrange transition-all duration-300 ${
+            item.isLiked
+              ? "fill-myOrange stroke-myOrange"
+              : "fill-none stroke-black"
+          }`}
+        />
       </div>
     </div>
   );
+}
+
+interface DialogProp {
+  type: "Shopping Cart" | "Favourites";
+  data: ProductList[];
 }
 
 interface ProductList {
@@ -90,10 +157,12 @@ interface ProductList {
   newPrice?: number;
   originalPrice: number;
   discount?: string;
-  count: number;
+  count?: number;
+  isLiked?: boolean;
 }
 
 interface itemProps {
+  type: "Shopping Cart" | "Favourites";
   item: ProductList;
   removeFunction: () => void;
 }

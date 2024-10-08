@@ -3,11 +3,11 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useComparison } from "@/app/hooks/app-context";
+import { useCart } from "@/app/hooks/cart-context";
 import { cartTotal } from "@/app/functions/cart-totals";
 
 export default function CheckoutDetails() {
-  const { cartItems } = useComparison();
+  const { cartItems } = useCart();
 
   return (
     <>

@@ -1,11 +1,11 @@
 "use client";
 
 import LinkOutlineButton from "@/app/_components/link-btn-outline";
-import { useComparison } from "@/app/hooks/app-context";
+import { useCart } from "@/app/hooks/cart-context";
 import { cartTotal } from "@/app/functions/cart-totals";
 
 export default function CartTotals() {
-  const { cartItems } = useComparison();
+  const { cartItems } = useCart();
 
   return (
     <div

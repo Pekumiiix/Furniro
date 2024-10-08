@@ -22,7 +22,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import CheckoutDetails from "./checkout-details";
-import { useComparison } from "@/app/hooks/app-context";
+import { useCart } from "@/app/hooks/cart-context";
 import EmptyCartState from "@/app/_components/empty-cart-state";
 
 const formSchema = z.object({
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
     },
   });
 
-  const { cartItems } = useComparison();
+  const { cartItems } = useCart();
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);

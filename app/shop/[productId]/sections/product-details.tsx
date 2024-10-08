@@ -8,9 +8,22 @@ import RelatedProducts from "./related-products";
 import StarIcon from "@/components/icons/star-icon";
 import CountIncrement from "@/app/_components/count-icrement";
 import { handleShare } from "@/app/functions/share-product";
+import { useCart } from "@/app/hooks/cart-context";
+import { useComparison } from "@/app/hooks/comparison-context";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
-  const [count, setCount] = useState<number>(1);
+  const { cartItems, removeFromCart, decreaseItemCount, addToCart } = useCart();
+  const { addToComparison } = useComparison();
+  const cartProduct = cartItems.find((item) => item.id === product.id);
+  const router = useRouter();
+
+  const handleCompare = () => {
+    if (product) {
+      addToComparison(product);
+      router.push(`/product-comparison`);
+    }
+  };
 
   return (
     <>
@@ -65,17 +78,27 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
           <div className="flex flex-wrap sm:flex-nowrap items-center gap-5 border-b border-[#D9D9D9] pb-10">
             <CountIncrement
-              increaseFunction={() => setCount((c) => c + 1)}
-              decreaseFunction={() => setCount((c) => c - 1)}
-              count={count}
+              increaseFunction={() => addToCart(product.id)}
+              decreaseFunction={() => decreaseItemCount(product.id)}
+              count={cartProduct ? cartProduct.count : "1"}
             />
 
             <div className="flex items-center gap-5">
-              <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
-                Add to cart
+              <Button
+                onClick={() =>
+                  cartProduct
+                    ? removeFromCart(product.id)
+                    : addToCart(product.id)
+                }
+                className={`px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300`}
+              >
+                {cartProduct ? "Remove from cart" : "Add to cart"}
               </Button>
 
-              <Button className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300">
+              <Button
+                onClick={handleCompare}
+                className="px-4 py-5 font-medium border border-myOrange text-myOrange bg-transparent hover:border-transparent hover:bg-myOrange hover:text-white transition-all duration-300"
+              >
                 + Compare
               </Button>
             </div>

@@ -8,7 +8,9 @@ import { ReactElement } from "react";
 import { handleShare } from "../functions/share-product";
 import { useRouter } from "next/navigation";
 import { productList } from "../data/product";
-import { useComparison } from "@/app/hooks/app-context";
+import { useComparison } from "../hooks/comparison-context";
+import { useCart } from "@/app/hooks/cart-context";
+import { useLikedContext } from "../hooks/like-context";
 
 export default function ProductHover({
   id,
@@ -17,9 +19,11 @@ export default function ProductHover({
   id: number;
   description: string;
 }) {
-  const { addToComparison, addToCart } = useComparison();
+  const { addToComparison } = useComparison();
+  const { addToCart } = useCart();
   const router = useRouter();
   const product = productList.find((p) => p.id === id);
+  const { likedItems, toggleLikedItems } = useLikedContext();
 
   const handleCompare = () => {
     if (product) {
@@ -27,6 +31,8 @@ export default function ProductHover({
       router.push(`/product-comparison`);
     }
   };
+
+  const isProductLiked = likedItems.some((item) => item.id === id);
 
   return (
     <div className="absolute top-0 w-full h-full hidden group-hover:flex flex-col items-center justify-center gap-6 bg-[rgba(58,58,58,0.5)]">
@@ -62,10 +68,23 @@ export default function ProductHover({
             {actions[1].name}
           </p>
         </Button>
-        <Button className="flex items-center gap-1.5 group/like p-1 bg-transparent hover:bg-transparent">
-          {actions[2].icon}
-          <p className="text-white font-semibold group-hover/like:text-myOrange transition-all duration-300">
-            {actions[2].name}
+        <Button
+          onClick={() => toggleLikedItems(id)}
+          className="flex items-center gap-1.5 group/like p-1 bg-transparent hover:bg-transparent"
+        >
+          <HeartIcon
+            className={`w-4 h-4 ${
+              isProductLiked
+                ? "stroke-myOrange fill-myOrange"
+                : "stroke-white fill-none"
+            } group-hover/like:stroke-myOrange transition-all duration-300`}
+          />
+          <p
+            className={`${
+              isProductLiked ? "text-myOrange" : "text-white"
+            } font-semibold group-hover/like:text-myOrange transition-all duration-300`}
+          >
+            {isProductLiked ? "Liked" : actions[2].name}
           </p>
         </Button>
       </div>
@@ -87,14 +106,11 @@ const actions: Actions[] = [
     name: "Compare",
   },
   {
-    icon: (
-      <HeartIcon className="w-4 h-4 stroke-white group-hover/like:stroke-myOrange transition-all duration-300" />
-    ),
     name: "Like",
   },
 ];
 
 interface Actions {
-  icon: ReactElement;
+  icon?: ReactElement;
   name: string;
 }

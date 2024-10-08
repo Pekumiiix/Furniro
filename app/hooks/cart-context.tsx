@@ -4,13 +4,10 @@ import { createContext, useContext, useState, ReactNode } from "react";
 import { toast } from "sonner";
 import { productList } from "../data/product";
 
-// Create the context
-const AppContext = createContext<
+// Cart context
+const CartContext = createContext<
   | {
-      comparison: ProductList[];
       cartItems: ProductWithCount[];
-      addToComparison: (product: ProductList) => void;
-      removeFromComparison: (id: number) => void;
       addToCart: (productId: number) => void;
       removeFromCart: (productId: number) => void;
       increaseItemCount: (productId: number) => void;
@@ -19,29 +16,14 @@ const AppContext = createContext<
   | undefined
 >(undefined);
 
-// Create a provider
-export function AppContextProvider({ children }: { children: ReactNode }) {
-  const [comparison, setComparison] = useState<ProductList[]>([]);
+// Cart Provider
+export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<ProductWithCount[]>([]);
 
   const allProducts: ProductWithCount[] = productList.map((product) => ({
     ...product,
     count: 1,
   }));
-
-  function addToComparison(product: ProductList) {
-    const isProductInComparison = comparison.some((p) => p.id === product.id);
-
-    if (!isProductInComparison) {
-      setComparison([product, ...comparison]); // Add product to comparison
-    } else {
-      toast.error("Kindly select another product");
-    }
-  }
-
-  function removeFromComparison(id: number) {
-    setComparison(comparison.filter((product) => product.id !== id));
-  }
 
   function addToCart(productId: number) {
     const clickedProduct = allProducts.find((p) => p.id === productId);
@@ -54,6 +36,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
 
     if (!product) {
       setCartItems((c) => [...c, clickedProduct]);
+      toast.success("Product has been added to cart");
     } else {
       setCartItems((c) =>
         c.map((item) =>
@@ -62,6 +45,7 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
             : item
         )
       );
+      toast.success("Increased product count");
     }
   }
 
@@ -94,12 +78,9 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <AppContext.Provider
+    <CartContext.Provider
       value={{
-        comparison,
         cartItems,
-        addToComparison,
-        removeFromComparison,
         addToCart,
         removeFromCart,
         increaseItemCount,
@@ -107,15 +88,14 @@ export function AppContextProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </AppContext.Provider>
+    </CartContext.Provider>
   );
 }
 
-// Custom hook to use the comparison context
-export function useComparison() {
-  const context = useContext(AppContext);
+export function useCart() {
+  const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useComparison must be used within a ComparisonProvider");
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 }

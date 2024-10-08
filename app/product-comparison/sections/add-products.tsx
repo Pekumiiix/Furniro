@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useComparison } from "@/app/hooks/app-context";
+import { useComparison } from "@/app/hooks/comparison-context";
 
 export default function AddProducts() {
   const { comparison, addToComparison } = useComparison();

@@ -1,9 +1,9 @@
 "use client";
 
-import { useComparison } from "../hooks/app-context";
+import { useCart } from "../hooks/cart-context";
 
 export function cartTotal() {
-  const { cartItems } = useComparison();
+  const { cartItems } = useCart();
 
   return cartItems.reduce((acc: number, item: ProductList) => {
     const price =
