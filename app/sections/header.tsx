@@ -16,9 +16,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import CartDialog from "../_components/cart-dialog";
 import { usePathname } from "next/navigation";
+import { useCart } from "../hooks/cart-context";
+import { useLikedContext } from "../hooks/like-context";
 
 export default function Header() {
   return (
@@ -123,6 +130,9 @@ function DropDown() {
 }
 
 function NavRight() {
+  const { cartItems } = useCart();
+  const { likedItems } = useLikedContext();
+
   return (
     <div className="hidden lg:flex items-center gap-5">
       <Link href={`/account`} className="group p-2">
@@ -136,19 +146,21 @@ function NavRight() {
         <SearchIcon className="w-[25px] h-[25px] stroke-black group-hover:stroke-myOrange transition-all duration-300" />
       </Button>
 
-      <Button
-        variant={`default`}
-        className="bg-transparent hover:bg-transparent group"
-      >
-        <HeartIcon className="w-[26px] h-6 stroke-black fill-none group-hover:stroke-none group-hover:fill-myOrange transition-all duration-300" />
-      </Button>
+      <Dialog>
+        <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
+          <HeartIcon className="w-[26px] h-6 stroke-black fill-none group-hover:stroke-none group-hover:fill-myOrange transition-all duration-300" />
+        </DialogTrigger>
+        <DialogContent className="px-0 border-none">
+          <CartDialog type="Favourites" data={likedItems} />
+        </DialogContent>
+      </Dialog>
 
       <Dialog>
-        <DialogTrigger className="bg-transparent hover:bg-transparent group">
+        <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
           <CartIcon className="w-[26px] h-[23px] fill-black group-hover:fill-myOrange transition-all duration-300" />
         </DialogTrigger>
         <DialogContent className="px-0 border-none">
-          <CartDialog />
+          <CartDialog type="Shopping Cart" data={cartItems} />
         </DialogContent>
       </Dialog>
     </div>

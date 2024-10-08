@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useCart } from "@/app/hooks/cart-context";
-import { cartTotal } from "@/app/functions/cart-totals";
+import { CartTotal } from "@/app/functions/cart-totals";
 
 export default function CheckoutDetails() {
   const { cartItems } = useCart();
@@ -34,7 +34,7 @@ export default function CheckoutDetails() {
           <div className="flex items-center justify-between">
             <p className="text-sm">Total:</p>
             <p className="font-medium text-xl text-myOrange">
-              ₦{cartTotal().toLocaleString()}
+              ₦{CartTotal().toLocaleString()}
             </p>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import LinkOutlineButton from "@/app/_components/link-btn-outline";
 import { useCart } from "@/app/hooks/cart-context";
-import { cartTotal } from "@/app/functions/cart-totals";
+import { CartTotal } from "@/app/functions/cart-totals";
 
 export default function CartTotals() {
   const { cartItems } = useCart();
@@ -32,7 +32,7 @@ export default function CartTotals() {
           ))}
           <div className="flex items-center justify-between mt-2 pt-3 border-t border-myOrange">
             <p className="text-myBlack">Total:</p>
-            <p className="text-myOrange">₦{cartTotal().toLocaleString()}</p>
+            <p className="text-myOrange">₦{CartTotal().toLocaleString()}</p>
           </div>
         </div>
       </div>

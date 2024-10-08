@@ -3,7 +3,7 @@
 import { X } from "lucide-react";
 import LinkOutlineButton from "./link-btn-outline";
 import { useCart } from "../hooks/cart-context";
-import { cartTotal } from "../functions/cart-totals";
+import { CartTotal } from "../functions/cart-totals";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import HeartIcon from "@/components/icons/heart-icon";
@@ -30,7 +30,11 @@ export default function CartDialog({ type, data }: DialogProp) {
         </div>
       ) : (
         <>
-          <div className="flex flex-col gap-3 px-3 mt-7">
+          <div
+            className={`flex flex-col gap-3 px-3 mt-7 ${
+              type === "Shopping Cart" ? "pb-0" : "pb-5"
+            }`}
+          >
             {data.map((item: ProductList, index: number) => (
               <CartItem
                 key={index}
@@ -52,7 +56,7 @@ export default function CartDialog({ type, data }: DialogProp) {
           >
             <span>Total:</span>
             <span className="text-myOrange">
-              ₦{cartTotal().toLocaleString()}
+              ₦{CartTotal().toLocaleString()}
             </span>
           </p>
 

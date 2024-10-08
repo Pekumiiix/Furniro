@@ -2,7 +2,7 @@
 
 import { useCart } from "../hooks/cart-context";
 
-export function cartTotal() {
+export function CartTotal() {
   const { cartItems } = useCart();
 
   return cartItems.reduce((acc: number, item: ProductList) => {
