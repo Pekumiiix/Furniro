@@ -17,15 +17,17 @@ export default function ProductTable() {
   }, [] as AdditionalInformation[]);
 
   return (
-    <section className="container w-full md:flex items-center justify-center py-14 border-t border-[#E8E8E8] overflow-auto">
-      <table className="min-w-[600px] w-full flex flex-col gap-5 md:gap-7">
-        <General information={information} />
+    <section className="container w-full md:flex items-center py-14 border-t border-[#e8e8e8] overflow-auto">
+      <table className="w-[790px] md:min-w-[900px] lg:w-full overflow-y-auto">
+        <tbody className="flex flex-col min-w-full w-fit">
+          <General information={information} />
 
-        <Product information={information} />
+          <Product information={information} />
 
-        <Dimension information={information} />
+          <Dimension information={information} />
 
-        <Warranty information={information} />
+          <Warranty information={information} />
+        </tbody>
       </table>
     </section>
   );
@@ -43,27 +45,23 @@ function General({ information }: GeneralProps) {
 
   return (
     <>
-      <tbody>
-        <tr>
-          <td className="text-lg md:text-2xl font-medium">General</td>
-        </tr>
-      </tbody>
+      <tr className="mb-1.5">
+        <td className="text-lg md:text-2xl font-medium">General</td>
+      </tr>
       {generalFields.map((field) => (
-        <tbody key={field.key}>
-          <tr className="grid grid-cols-4 gap-5 -mb-2.5 md:-mb-5">
-            <td className="text-myBlack md:font-medium text-[13px] md:text-base">
-              {field.label}:
+        <tr key={field.label} className="grid grid-cols-4 gap-5">
+          <td className="text-myBlack md:font-medium text-[13px] md:text-base mb-0.5">
+            {field.label}:
+          </td>
+          {information.map((item, index) => (
+            <td
+              className="text-myBlack md:font-medium text-[13px] md:text-base"
+              key={index}
+            >
+              {item.general[field.key as keyof GeneralInfo]}
             </td>
-            {information.map((item, index) => (
-              <td
-                className="text-myBlack md:font-medium text-[13px] md:text-base"
-                key={index}
-              >
-                {item.general[field.key as keyof GeneralInfo]}
-              </td>
-            ))}
-          </tr>
-        </tbody>
+          ))}
+        </tr>
       ))}
     </>
   );
@@ -74,33 +72,29 @@ function Product({ information }: GeneralProps) {
     { label: "Filling material", key: "filling_material" },
     { label: "Finish type", key: "finish_type" },
     { label: "Adjustable headrest", key: "headrest" },
-    { label: "Maximum load capacity", key: "max_load_capacity" },
+    { label: "Maximum load capacity (Kg)", key: "max_load_capacity" },
     { label: "Origin of manufacture", key: "origin" },
   ];
 
   return (
     <>
-      <tbody className="mt-7">
-        <tr>
-          <td className="text-lg md:text-2xl font-medium">Product</td>
-        </tr>
-      </tbody>
+      <tr className="mt-10 mb-1.5">
+        <td className="text-lg md:text-2xl font-medium">Product</td>
+      </tr>
       {productFields.map((field) => (
-        <tbody key={field.key}>
-          <tr className="grid grid-cols-4 gap-5 -mb-2.5 md:-mb-5">
-            <td className="text-myBlack md:font-medium text-[13px] md:text-base">
-              {field.label}:
+        <tr className="grid grid-cols-4 gap-5" key={field.label}>
+          <td className="text-myBlack md:font-medium text-[13px] md:text-base mb-0.5">
+            {field.label}:
+          </td>
+          {information.map((item, index) => (
+            <td
+              className="text-myBlack md:font-medium text-[13px] md:text-base"
+              key={index}
+            >
+              {item.product[field.key as keyof ProductInfo]}
             </td>
-            {information.map((item, index) => (
-              <td
-                className="text-myBlack md:font-medium text-[13px] md:text-base"
-                key={index}
-              >
-                {item.product[field.key as keyof ProductInfo]}
-              </td>
-            ))}
-          </tr>
-        </tbody>
+          ))}
+        </tr>
       ))}
     </>
   );
@@ -108,37 +102,33 @@ function Product({ information }: GeneralProps) {
 
 function Dimension({ information }: GeneralProps) {
   const productFields: GeneralField[] = [
-    { label: "Width", key: "width" },
-    { label: "Height", key: "height" },
-    { label: "Depth", key: "depth" },
-    { label: "Weight", key: "weight" },
-    { label: "Seat height", key: "seat_height" },
-    { label: "Leg height", key: "leg_height" },
+    { label: "Width (cm)", key: "width" },
+    { label: "Height (cm)", key: "height" },
+    { label: "Depth (cm)", key: "depth" },
+    { label: "Weight (cm)", key: "weight" },
+    { label: "Seat height (cm)", key: "seat_height" },
+    { label: "Leg height (cm)", key: "leg_height" },
   ];
 
   return (
     <>
-      <tbody className="mt-7">
-        <tr>
-          <td className="text-lg md:text-2xl font-medium">Dimension</td>
-        </tr>
-      </tbody>
+      <tr className="mt-10 mb-1.5">
+        <td className="text-lg md:text-2xl font-medium">Dimension</td>
+      </tr>
       {productFields.map((field) => (
-        <tbody key={field.key}>
-          <tr className="grid grid-cols-4 gap-5 -mb-2.5 md:-mb-5">
-            <td className="text-myBlack md:font-medium text-[13px] md:text-base">
-              {field.label}:
+        <tr key={field.label} className="grid grid-cols-4 gap-5">
+          <td className="text-myBlack md:font-medium text-[13px] md:text-base mb-0.5">
+            {field.label}:
+          </td>
+          {information.map((item, index) => (
+            <td
+              className="text-myBlack md:font-medium text-[13px] md:text-base"
+              key={index}
+            >
+              {item.dimension[field.key as keyof DimensionInfo]}
             </td>
-            {information.map((item, index) => (
-              <td
-                className="text-myBlack md:font-medium text-[13px] md:text-base"
-                key={index}
-              >
-                {item.dimension[field.key as keyof DimensionInfo]}
-              </td>
-            ))}
-          </tr>
-        </tbody>
+          ))}
+        </tr>
       ))}
     </>
   );
@@ -150,32 +140,28 @@ function Warranty({ information }: GeneralProps) {
     { label: "Warranty service type", key: "service_type" },
     { label: "Covered in warranty", key: "covered" },
     { label: "Not covered in warranty", key: "not_covered" },
-    { label: "Domestic warranty", key: "domestic" },
+    { label: "Domestic warranty (yrs)", key: "domestic" },
   ];
 
   return (
     <>
-      <tbody className="mt-7">
-        <tr>
-          <td className="text-lg md:text-2xl font-medium">Warranty</td>
-        </tr>
-      </tbody>
+      <tr className="mt-10 mb-1.5">
+        <td className="text-lg md:text-2xl font-medium">Warranty</td>
+      </tr>
       {productFields.map((field) => (
-        <tbody key={field.key}>
-          <tr className="grid grid-cols-4 gap-5 -mb-2.5 md:-mb-5">
-            <td className="text-myBlack md:font-medium text-[13px] md:text-base">
-              {field.label}:
+        <tr key={field.key} className="grid grid-cols-4 gap-5">
+          <td className="text-myBlack md:font-medium text-[13px] md:text-base mb-0.5">
+            {field.label}:
+          </td>
+          {information.map((item, index) => (
+            <td
+              className="text-myBlack md:font-medium text-[13px] md:text-base"
+              key={index}
+            >
+              {item.warranty[field.key as keyof WarrantyInfo]}
             </td>
-            {information.map((item, index) => (
-              <td
-                className="text-myBlack md:font-medium text-[13px] md:text-base"
-                key={index}
-              >
-                {item.warranty[field.key as keyof WarrantyInfo]}
-              </td>
-            ))}
-          </tr>
-        </tbody>
+          ))}
+        </tr>
       ))}
     </>
   );

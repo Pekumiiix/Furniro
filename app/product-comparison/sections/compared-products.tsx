@@ -24,7 +24,7 @@ function ProductCard({ product }: { product: ProductList }) {
   const { removeFromComparison } = useComparison();
 
   return (
-    <div className="relative flex flex-col gap-3 md:col-span-2 lg:col-span-1">
+    <div className="relative flex flex-col justify-between h-full gap-3 md:col-span-2 lg:col-span-1">
       <p
         className={`${product.type === "normal" ? "hidden" : "flex"} ${
           product.type === "discount"
@@ -44,7 +44,7 @@ function ProductCard({ product }: { product: ProductList }) {
         <div className="flex flex-col gap-1">
           <div className="flex flex-col">
             <p className="text-xl font-medium">{product.name}</p>
-            <div className={`flex items-center gap-2`}>
+            <div className={`flex flex-wrap items-center gap-2`}>
               <p className="text-[#3A3A3A] text-sm font-semibold">
                 {product.newPrice
                   ? "₦" + product.newPrice?.toLocaleString()

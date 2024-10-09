@@ -22,6 +22,10 @@ const config = {
         homeBg: "url('/assets/images/home-hero.png')",
         shopBg: "url('/assets/images/shop-hero.png')",
       },
+      gridTemplateColumns: {
+        custom: "repeat(auto-fit, minmax(175px, 1fr))",
+        ipad: "repeat(auto-fit, minmax(250px, 1fr))",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
