@@ -16,7 +16,11 @@ export default function Range() {
 
       <div className="grid sm:grid-cols-3 gap-7 md:gap-5">
         {ranges.map((item, index) => (
-          <Link href={`#`} key={index} className="flex flex-col gap-3 group">
+          <Link
+            href={`/shop`}
+            key={index}
+            className="flex flex-col gap-3 group"
+          >
             <Image
               src={item.imgSrc}
               alt={`${item.name} Picture`}
