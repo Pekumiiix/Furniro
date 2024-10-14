@@ -14,7 +14,7 @@ export default function CartDialog({ type, data }: DialogProp) {
   const { toggleLikedItems } = useLikedContext();
 
   return (
-    <div className="flex flex-col w-[417px] h-fit max-h-[500px] absolute right-0 bg-white overflow-y-auto">
+    <div className="flex flex-col w-full sm:w-[417px] h-fit max-h-[500px] absolute right-0 bg-white overflow-y-auto">
       <p className="text-2xl font-semibold pt-2.5 pb-3 border-b border-[#D9D9D9] px-3">
         {type === "Shopping Cart" ? "Shopping Cart" : "Favourites"}
       </p>
