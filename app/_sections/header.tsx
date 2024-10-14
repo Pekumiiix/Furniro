@@ -98,14 +98,12 @@ function DropDown() {
           Shortcuts
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="flex items-center gap-2 w-full">
+        {/**
+         * <DropdownMenuItem className="flex items-center gap-2 w-full">
           <ProfileIcon className="w-5 h-5 fill-myOrange" />
           <p>Account</p>
         </DropdownMenuItem>
-        <DropdownMenuItem className="flex items-center gap-2 w-full">
-          <HeartIcon className="w-5 h-5 stroke-none fill-myOrange" />
-          <p>Favourites</p>
-        </DropdownMenuItem>
+         */}
         <DropdownMenuItem className="flex items-center gap-2 w-full">
           <CartIcon className="w-5 h-5 fill-myOrange" />
           <Link href={`/cart`}>Cart</Link>
@@ -137,9 +135,11 @@ function NavRight() {
 
   return (
     <div className="hidden lg:flex items-center gap-5">
-      <Link href={`/account`} className="group p-2">
+      {/**
+       * <Link href={`/account`} className="group p-2">
         <ProfileIcon className="w-7 h-7 fill-black group-hover:fill-myOrange transition-all duration-300" />
       </Link>
+       */}
 
       <Button
         variant={`default`}
