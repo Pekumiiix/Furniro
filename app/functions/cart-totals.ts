@@ -15,6 +15,14 @@ export function CartTotal() {
   }, 0);
 }
 
+export function CartLength() {
+  const { cartItems } = useCart();
+
+  return cartItems.reduce((acc: number, item: ProductList) => {
+    return acc + (item.count || 1);
+  }, 0);
+}
+
 interface ProductList {
   id: number;
   type: "normal" | "discount" | "new";

@@ -31,6 +31,7 @@ import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 import { useState } from "react";
 import { productList } from "../data/product";
+import { CartLength } from "../functions/cart-totals";
 
 export default function Header() {
   const [isHidden, setIsHidden] = useState<boolean>(true);
@@ -229,7 +230,14 @@ function NavRight({
       <LikedDialogComponent />
 
       <Dialog>
-        <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
+        <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group relative">
+          <p
+            className={`bg-red-800 text-white font-medium text-xs w-fit rounded-full px-2.5 py-1 ${
+              cartItems.length === 0 ? "hidden" : "flex"
+            } absolute right-0 -top-1`}
+          >
+            {CartLength()}
+          </p>
           <CartIcon className="w-[26px] h-[23px] fill-black group-hover:fill-myOrange transition-all duration-300" />
         </DialogTrigger>
         <DialogContent className="px-0 border-none">
@@ -249,7 +257,18 @@ function LikedDialogComponent({ className = "" }: { className?: string }) {
 
   return (
     <Dialog>
-      <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
+      <DialogTrigger
+        className={`bg-transparent px-4 py-2 hover:bg-transparent group relative ${
+          className ? "flex lg:hidden" : "hidden lg:flex"
+        }`}
+      >
+        <p
+          className={`bg-red-800 text-white font-medium text-[9px] md:text-xs w-fit rounded-full px-2 py-0.5 md:px-2.5 md:py-1 ${
+            likedItems.length === 0 ? "hidden" : "flex"
+          } absolute right-1 md:right-0 top-0 md:-top-1`}
+        >
+          {likedItems.length}
+        </p>
         <HeartIcon
           className={`${
             className ? className : "w-[26px] h-6"
