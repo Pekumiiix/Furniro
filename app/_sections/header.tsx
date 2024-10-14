@@ -20,7 +20,8 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
-  DialogFooter,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import CartDialog from "../_components/cart-dialog";
 import { usePathname } from "next/navigation";
@@ -30,7 +31,7 @@ import { useLikedContext } from "../hooks/like-context";
 export default function Header() {
   return (
     <header className="w-full h-fit bg-[#FFFFFF]">
-      <nav className="container flex items-center justify-between py-7">
+      <nav className="px-5 sm:container flex items-center justify-between py-7">
         <Link href={`/`} className="flex items-center gap-[5px]">
           <Image
             src={`/assets/images/logo.png`}
@@ -40,7 +41,7 @@ export default function Header() {
             className="h-5 w-auto sm:w-[50px] sm:h-[32px]"
           />
 
-          <p className="text-2xl sm:text-4xl text-black font-bold">Furniro</p>
+          <p className="text-lg sm:text-4xl text-black font-bold">Furniro</p>
         </Link>
 
         <LinkNav />
@@ -74,10 +75,12 @@ function LinkNav() {
 
       <Button
         variant={`default`}
-        className="bg-transparent hover:bg-transparent group flex lg:hidden"
+        className="bg-transparent hover:bg-transparent group flex lg:hidden p-0.5"
       >
         <SearchIcon className="w-5 h-5 sm:w-8 sm:h-8 stroke-black group-hover:stroke-myOrange transition-all duration-300" />
       </Button>
+
+      <LikedDialogComponent className="w-5 h-5" />
 
       <DropDown />
     </div>
@@ -131,7 +134,6 @@ function DropDown() {
 
 function NavRight() {
   const { cartItems } = useCart();
-  const { likedItems } = useLikedContext();
 
   return (
     <div className="hidden lg:flex items-center gap-5">
@@ -146,24 +148,42 @@ function NavRight() {
         <SearchIcon className="w-[25px] h-[25px] stroke-black group-hover:stroke-myOrange transition-all duration-300" />
       </Button>
 
-      <Dialog>
-        <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
-          <HeartIcon className="w-[26px] h-6 stroke-black fill-none group-hover:stroke-none group-hover:fill-myOrange transition-all duration-300" />
-        </DialogTrigger>
-        <DialogContent className="px-0 border-none">
-          <CartDialog type="Favourites" data={likedItems} />
-        </DialogContent>
-      </Dialog>
+      <LikedDialogComponent />
 
       <Dialog>
         <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
           <CartIcon className="w-[26px] h-[23px] fill-black group-hover:fill-myOrange transition-all duration-300" />
         </DialogTrigger>
         <DialogContent className="px-0 border-none">
+          <DialogTitle>Cart Products</DialogTitle>
+          <DialogDescription>
+            These are the products you added to your cart.
+          </DialogDescription>
           <CartDialog type="Shopping Cart" data={cartItems} />
         </DialogContent>
       </Dialog>
     </div>
+  );
+}
+
+function LikedDialogComponent({ className = "" }: { className?: string }) {
+  const { likedItems } = useLikedContext();
+
+  return (
+    <Dialog>
+      <DialogTrigger className="bg-transparent px-4 py-2 hover:bg-transparent group">
+        <HeartIcon
+          className={`${
+            className ? className : "w-[26px] h-6"
+          } stroke-black fill-none group-hover:stroke-none group-hover:fill-myOrange transition-all duration-300`}
+        />
+      </DialogTrigger>
+      <DialogContent className="px-0 border-none">
+        <DialogTitle>Favourites</DialogTitle>
+        <DialogDescription>These are the products you liked.</DialogDescription>
+        <CartDialog type="Favourites" data={likedItems} />
+      </DialogContent>
+    </Dialog>
   );
 }
 

@@ -4,11 +4,11 @@ import { ContactForm } from "../components/contact-fom";
 export default function GetInTouch() {
   return (
     <section className="container flex flex-col items-center gap-[60px] py-[60px]">
-      <div className="flex flex-col items-center max-w-[644px] gap-2">
-        <p className="text-4xl font-semibold text-center">
+      <div className="flex flex-col items-center max-w-[644px] gap-0.5 sm:gap-2">
+        <p className="text-2xl sm:text-4xl font-semibold text-center">
           Get In Touch With Us
         </p>
-        <p className="text-[#9F9F9F] text-center">
+        <p className="text-sm sm:text-base text-[#9F9F9F] text-center">
           For More Information About Our Product & Services. Please Feel Free To
           Drop Us An Email. Our Staff Always Be There To Help You Out. Do Not
           Hesitate!
@@ -41,10 +41,10 @@ function DetailsCard({ icon, name, details }: Card) {
       </div>
 
       <div className="flex flex-col max-w-[212px]">
-        <p className="text-xl font-medium">{name}</p>
+        <p className="text-sm sm:text-xl font-medium">{name}</p>
         <div>
           {details.map((item, index) => (
-            <p key={index} className="text-sm">
+            <p key={index} className="text-xs sm:text-sm">
               {item}
             </p>
           ))}

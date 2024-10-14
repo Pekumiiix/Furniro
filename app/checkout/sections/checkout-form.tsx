@@ -103,7 +103,7 @@ export default function CheckoutForm() {
           <p className="text-xl font-medium text-myBlack">Billing Details</p>
 
           <div className="flex flex-col gap-5">
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-2 gap-5">
               <FormBlock
                 type="input"
                 name="firstname"

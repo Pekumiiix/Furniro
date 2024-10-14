@@ -37,7 +37,7 @@ export default function CartTotals() {
         </div>
       </div>
       <LinkOutlineButton
-        className={`w-[90%]`}
+        className={`w-full`}
         text="Checkout"
         link="/checkout"
       />

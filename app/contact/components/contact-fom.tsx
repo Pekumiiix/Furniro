@@ -125,7 +125,7 @@ export function ContactForm() {
         />
         <Button
           type="submit"
-          className="text-white bg-myOrange w-[237px] h-[55px] hover:bg-myOrange hover:opacity-85"
+          className="text-white bg-myOrange w-full sm:w-[237px] h-[55px] hover:bg-myOrange hover:opacity-85"
         >
           Submit
         </Button>

@@ -27,7 +27,9 @@ export default function CartList() {
       <Table className="min-w-full">
         <TableHeader>
           <TableRow className="bg-[#F9F1E7] hover:bg-[#F9F1E7]">
-            <TableHead className="text-myBlack text-center">Product</TableHead>
+            <TableHead className="text-myBlack sm:text-center">
+              Product
+            </TableHead>
             <TableHead className="text-myBlack hidden sm:table-cell">
               Price
             </TableHead>
@@ -47,7 +49,7 @@ export default function CartList() {
                   />
                   <div className="flex flex-col">
                     <p>{item.name}</p>
-                    <p className="text-[#9F9F9F] flex sm:hidden">
+                    <p className="text-[#9F9F9F] text-xs flex sm:hidden">
                       {item.newPrice
                         ? "₦" + (item.count * item.newPrice).toLocaleString()
                         : "₦" +
@@ -66,6 +68,7 @@ export default function CartList() {
                   increaseFunction={() => increaseItemCount(item.id)}
                   decreaseFunction={() => decreaseItemCount(item.id)}
                   count={item.count}
+                  type="cart"
                 />
               </TableCell>
               <TableCell className="text-center">

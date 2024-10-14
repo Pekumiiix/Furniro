@@ -34,11 +34,11 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           className="lg:w-[500px] h-[447px] xl:w-[553px] xl:h-[500px] rounded-[10px]"
         />
 
-        <div className="flex flex-col max-w-full lg:max-w-[606px] gap-4 h-fit">
+        <div className="flex flex-col max-w-full lg:max-w-[606px] gap-4 h-fit -mt-7 sm:mt-0">
           <div className="flex flex-col gap-1">
-            <p className="text-3xl font-medium">{product.name}</p>
-            <div className="flex items-center gap-2">
-              <p className="text-xl text-myBlack">
+            <p className="text-xl md:text-3xl font-medium">{product.name}</p>
+            <div className="flex items-center gap-2 mt-0.5">
+              <p className="text-base sm:text-xl text-myBlack">
                 {product.newPrice
                   ? "₦" + product.newPrice.toLocaleString()
                   : "₦" + product.originalPrice.toLocaleString()}
@@ -46,20 +46,21 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
               <p
                 className={`${
                   product.type === "discount" ? "flex" : "hidden"
-                } text-xl text-[#9F9F9F] line-through`}
+                } text-base md:text-xl text-[#9F9F9F] line-through`}
               >
                 {"₦" + product.originalPrice.toLocaleString()}
               </p>
             </div>
-          </div>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-0.5">
+                <p className="text-sm md:text-base">5</p>
+                <StarIcon className="w-4 h-4 fill-myOrange" />
+              </div>
 
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-0.5">
-              <p>5</p>
-              <StarIcon className="w-4 h-4 fill-myOrange" />
+              <p className="text-xs md:text-sm text-[#9F9F9F]">
+                3 Customer Reviews
+              </p>
             </div>
-
-            <p className="text-sm text-[#9F9F9F]">3 Customer Reviews</p>
           </div>
 
           <p className="text-sm">
@@ -80,7 +81,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <CountIncrement
               increaseFunction={() => addToCart(product.id)}
               decreaseFunction={() => decreaseItemCount(product.id)}
-              count={cartProduct ? cartProduct.count : "1"}
+              count={cartProduct ? cartProduct.count : 1}
             />
 
             <div className="flex items-center gap-5">
