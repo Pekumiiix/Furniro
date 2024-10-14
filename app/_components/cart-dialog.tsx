@@ -126,7 +126,9 @@ function CartItem({ type, item, removeFunction }: itemProps) {
 
       <div
         onClick={removeFunction}
-        className={`flex items-center justify-center h-5 w-5 rounded-full ${
+        className={`${
+          type === "Result" ? "hidden" : "flex"
+        } items-center justify-center h-5 w-5 rounded-full ${
           type === "Shopping Cart" ? "bg-[#9F9F9F]" : "bg-white"
         } text-white font-semibold leading-none text-sm`}
       >
@@ -166,7 +168,7 @@ interface ProductList {
 }
 
 interface itemProps {
-  type: "Shopping Cart" | "Favourites";
+  type: "Shopping Cart" | "Favourites" | "Result";
   item: ProductList;
-  removeFunction: () => void;
+  removeFunction?: () => void;
 }

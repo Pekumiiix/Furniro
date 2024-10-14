@@ -27,11 +27,16 @@ import CartDialog from "../_components/cart-dialog";
 import { usePathname } from "next/navigation";
 import { useCart } from "../hooks/cart-context";
 import { useLikedContext } from "../hooks/like-context";
+import { Input } from "@/components/ui/input";
+import { X } from "lucide-react";
+import { useState } from "react";
+import { productList } from "../data/product";
 
 export default function Header() {
+  const [isHidden, setIsHidden] = useState<boolean>(true);
   return (
-    <header className="w-full h-fit bg-[#FFFFFF]">
-      <nav className="px-5 sm:container flex items-center justify-between py-7">
+    <header className="w-full h-fit bg-[#FFFFFF] flex flex-col items-center">
+      <nav className="px-5 sm:container flex items-center justify-between py-7 w-full">
         <Link href={`/`} className="flex items-center gap-[5px]">
           <Image
             src={`/assets/images/logo.png`}
@@ -44,15 +49,80 @@ export default function Header() {
           <p className="text-lg sm:text-4xl text-black font-bold">Furniro</p>
         </Link>
 
-        <LinkNav />
+        <LinkNav isHidden={isHidden} setIsHidden={setIsHidden} />
 
-        <NavRight />
+        <NavRight isHidden={isHidden} setIsHidden={setIsHidden} />
       </nav>
+
+      <SearchComponent isHidden={isHidden} setIsHidden={setIsHidden} />
     </header>
   );
 }
 
-function LinkNav() {
+function SearchComponent({
+  isHidden,
+  setIsHidden,
+}: {
+  isHidden: boolean;
+  setIsHidden: (isHidden: boolean) => void;
+}) {
+  const [value, setValue] = useState<string>("");
+  const filteredResults = productList.filter((item) =>
+    item.name.toLowerCase().includes(value.toLowerCase())
+  );
+
+  return (
+    <div
+      className={`${
+        isHidden ? "hidden" : "flex"
+      } w-full max-w-[600px] flex-col relative pb-6 px-5 sm:container`}
+    >
+      <div
+        className={`w-full h-[50px] px-2 rounded-[4px] border border-[#9f9f9f] ${
+          isHidden ? "hidden" : "flex"
+        } items-center`}
+      >
+        <Input
+          placeholder="Search...."
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          className="w-[90%] border-r border-[#9f9f9f] outline-none pl-0 rounded-none"
+        />
+        <X
+          className="w-[10%]"
+          onClick={() => {
+            setIsHidden(true);
+            setValue("");
+          }}
+        />
+      </div>
+
+      <div
+        className={`absolute ${
+          value === "" ? "hidden" : "flex"
+        } flex-col gap-1.5 w-[89.5%] top-[52px] bg-white py-5 px-3 border border-[#9f9f9f] rounded-b-[5px] max-h-[400px] overflow-y-auto`}
+      >
+        {filteredResults.length === 0 ? (
+          <p className="text-sm font-medium text-[#9f9f9f] w-full text-center">
+            No result found
+          </p>
+        ) : (
+          filteredResults.map((item, index) => (
+            <ResultItem key={index} item={item} setIsHidden={setIsHidden} />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+function LinkNav({
+  isHidden,
+  setIsHidden,
+}: {
+  isHidden: boolean;
+  setIsHidden: (isHidden: boolean) => void;
+}) {
   const currentPath = usePathname();
 
   return (
@@ -75,12 +145,13 @@ function LinkNav() {
 
       <Button
         variant={`default`}
+        onClick={() => setIsHidden(!isHidden)}
         className="bg-transparent hover:bg-transparent group flex lg:hidden p-0.5"
       >
         <SearchIcon className="w-5 h-5 sm:w-8 sm:h-8 stroke-black group-hover:stroke-myOrange transition-all duration-300" />
       </Button>
 
-      <LikedDialogComponent className="w-5 h-5" />
+      <LikedDialogComponent className="w-5 h-5 flex lg:hidden" />
 
       <DropDown />
     </div>
@@ -130,7 +201,13 @@ function DropDown() {
   );
 }
 
-function NavRight() {
+function NavRight({
+  isHidden,
+  setIsHidden,
+}: {
+  isHidden: boolean;
+  setIsHidden: (isHidden: boolean) => void;
+}) {
   const { cartItems } = useCart();
 
   return (
@@ -143,6 +220,7 @@ function NavRight() {
 
       <Button
         variant={`default`}
+        onClick={() => setIsHidden(!isHidden)}
         className="bg-transparent hover:bg-transparent group"
       >
         <SearchIcon className="w-[25px] h-[25px] stroke-black group-hover:stroke-myOrange transition-all duration-300" />
@@ -187,10 +265,37 @@ function LikedDialogComponent({ className = "" }: { className?: string }) {
   );
 }
 
-interface NavLinks {
-  name: string;
-  href: string;
-  isActive: boolean;
+function ResultItem({
+  item,
+  setIsHidden,
+}: {
+  item: ProductList;
+  setIsHidden: (isHidden: boolean) => void;
+}) {
+  return (
+    <Link
+      onClick={() => setIsHidden(true)}
+      href={`/shop/${item.id}`}
+      className="flex items-center justify-between hover:bg-gray-100 p-1.5 rounded-[4px]"
+    >
+      <div className="flex items-center gap-3">
+        <img
+          src={item.productImage}
+          alt="Product Image"
+          className="w-16 h-16 rounded-[5px]"
+        />
+
+        <div className="flex flex-col">
+          <p className={`text-sm`}>{item.name}</p>
+          <p className={`text-xs text-gray-500`}>
+            {item.type === "discount"
+              ? "₦" + item.newPrice?.toLocaleString()
+              : "₦" + item.originalPrice.toLocaleString()}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
 }
 
 const navLinks: NavLinks[] = [
@@ -199,3 +304,22 @@ const navLinks: NavLinks[] = [
   { name: "Blog", href: "/blog", isActive: false },
   { name: "Contact", href: "/contact", isActive: false },
 ];
+
+interface NavLinks {
+  name: string;
+  href: string;
+  isActive: boolean;
+}
+
+interface ProductList {
+  id: number;
+  type: "normal" | "discount" | "new";
+  productImage: string;
+  name: string;
+  description: string;
+  newPrice?: number;
+  originalPrice: number;
+  discount?: string;
+  count?: number;
+  isLiked?: boolean;
+}
